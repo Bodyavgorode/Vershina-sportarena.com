@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест ВК API</title>
+</head>
+<body>
+    <h1>Тест публикации в ВКонтакте</h1>
+    <button onclick="testPublish()">Опубликовать тестовый пост</button>
+    <button onclick="testGetPosts()">Получить посты</button>
+    <div id="result"></div>
+    
+    <script>
+    const token = 'vk1.a.TCs7g_MGGMkk6bTfUt8OAEFLMEKbtvGo63U_U4LHR-ClMnuHg6d5yC8BKw6kcyuPcsG3gRPwWTqHAXPeamA-C37ik2jbZgAQjRTM3AM1JLzgOAj7dcg-OUo8zH8u3C1z6YBTCncIdPkX-X_1CHowyCxSbRlyYOJumxfKx2Qu-FBhM7mNQj5VZK2EXugfvJeJu4MG9sEToO07jeMKqznmcg';
+    const groupId = '233748818';
+    
+    function testPublish() {
+        const callbackName = 'testCallback' + Date.now();
+        
+        window[callbackName] = function(response) {
+            console.log('Response:', response);
+            document.getElementById('result').innerHTML = 
+                '<pre>' + JSON.stringify(response, null, 2) + '</pre>';
+            
+            if (response.error) {
+                alert('Ошибка: ' + response.error.error_msg);
+            } else {
+                alert('Успех! ID поста: ' + response.response.post_id);
+                const link = `https://vk.com/wall-${groupId}_${response.response.post_id}`;
+                document.getElementById('result').innerHTML += 
+                    `<br><a href="${link}" target="_blank">Открыть пост в ВК</a>`;
+            }
+            
+            delete window[callbackName];
+        };
+        
+        const script = document.createElement('script');
+        script.src = `https://api.vk.com/method/wall.post?owner_id=-${groupId}&message=Тестовый пост из браузера&from_group=1&access_token=${token}&v=5.199&callback=${callbackName}`;
+        document.body.appendChild(script);
+    }
+    
+    function testGetPosts() {
+        const callbackName = 'testGetCallback' + Date.now();
+        
+        window[callbackName] = function(response) {
+            console.log('Posts response:', response);
+            document.getElementById('result').innerHTML = 
+                '<pre>' + JSON.stringify(response, null, 2) + '</pre>';
+            
+            delete window[callbackName];
+        };
+        
+        const script = document.createElement('script');
+        script.src = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&count=5&access_token=${token}&v=5.199&callback=${callbackName}`;
+        document.body.appendChild(script);
+    }
+    </script>
+</body>
+</html>

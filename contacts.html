@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="header">
+        <div class="header-inner">
+          <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="programs.html" class="nav-link">Программы</a>
+                <a href="trainers.html" class="nav-link">Тренеры</a>
+                <a href="shop.html" class="nav-link">Магазин</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link nav-active">Контакты</a>
+                <a href="order-history.html" class="nav-link">История заказов</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="balance" id="headerBalance">
+                    <span class="balance-icon">💰</span>
+                    <span class="balance-amount">0 ₽</span>
+                </div>
+                <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="headerCartCount">0</span>
+                </a>
+                <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">КОНТАКТЫ</h1>
+            <p class="hero-sub fade-in">Мы всегда на связи</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <!-- Contact Information -->
+                <div class="vp-appear">
+                    <h2 class="mb-3">Свяжитесь с нами</h2>
+                    
+                    <div class="contact-card mb-3">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h3 class="text-accent mb-1">Адрес</h3>
+                            <p>Москва, Пресненская набережная, 12<br>Бизнес-центр "Сити Тауэр"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card mb-3">
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <h3 class="text-accent mb-1">Часы работы</h3>
+                            <p>Понедельник - Пятница: 06:00 - 23:00<br>Суббота - Воскресенье: 08:00 - 22:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card mb-3">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h3 class="text-accent mb-1">Контакты</h3>
+                            <p>Телефон: +7 (495) 123-45-67<br>Email: info@vershina-club.ru<br>Telegram: @vershina_support</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <h3 class="text-accent mb-1">Социальные сети</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-link">VK</a>
+                                <a href="#" class="social-link">Instagram</a>
+                                <a href="#" class="social-link">Telegram</a>
+                                <a href="#" class="social-link">YouTube</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="vp-appear">
+                    <div class="card">
+                        <h3 class="text-accent mb-2">Оставить заявку</h3>
+                        <p class="mb-3">Заполните форму ниже, и наш менеджер свяжется с вами в ближайшее время</p>
+                        
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label class="form-label">Ваше имя</label>
+                                <input type="text" id="contactName" class="form-input" placeholder="Иван Иванов" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Телефон</label>
+                                <input type="tel" id="contactPhone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="contactEmail" class="form-input" placeholder="ivan@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Интересующая программа</label>
+                                <select class="form-input" id="contactProgram" required>
+                                    <option value="">Выберите программу</option>
+                                    <option value="strength">Силовой тренинг</option>
+                                    <option value="functional">Функциональный тренинг</option>
+                                    <option value="cardio">Кардио тренировки</option>
+                                    <option value="yoga">Йога и стретчинг</option>
+                                    <option value="personal">Персональные тренировки</option>
+                                    <option value="group">Групповые занятия</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Сообщение</label>
+                                <textarea class="form-textarea" id="contactMessage" placeholder="Расскажите о ваших целях или задайте вопрос..." rows="5"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary" style="width: 100%;">Отправить заявку</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Maps Section -->
+    <section class="section-sm" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Мы на карте</h2>
+            <div class="map-container vp-appear">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.372789963668!2d37.617299915803!3d55.751994280553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a50b315e573%3A0xa886bf5a3d9b2e68!2z0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1620000000000!5m2!1sru!2sru" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius: 20px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Get Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Как добраться</h2>
+            <div class="grid grid-3">
+                <div class="transport-card vp-appear">
+                    <div class="transport-icon">🚇</div>
+                    <h3 class="text-accent">Метро</h3>
+                    <p>Станция "Деловой центр"<br>5 минут пешком</p>
+                </div>
+                <div class="transport-card vp-appear">
+                    <div class="transport-icon">🚗</div>
+                    <h3 class="text-accent">Автомобиль</h3>
+                    <p>Бесплатная парковка<br>для клиентов клуба</p>
+                </div>
+                <div class="transport-card vp-appear">
+                    <div class="transport-icon">🚌</div>
+                    <h3 class="text-accent">Автобус</h3>
+                    <p>Остановка "Сити Тауэр"<br>маршруты 101, 104</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Часто задаваемые вопросы</h2>
+            
+            <div class="grid grid-2">
+                <div class="vp-appear">
+                    <div class="faq-card">
+                        <h4 class="text-accent">Как записаться на первую тренировку?</h4>
+                        <p>Вы можете записаться через форму на сайте, по телефону или лично посетив наш клуб. Первая тренировка — бесплатная!</p>
+                    </div>
+                </div>
+                
+                <div class="vp-appear">
+                    <div class="faq-card">
+                        <h4 class="text-accent">Нужна ли медицинская справка?</h4>
+                        <p>Для разовых посещений справка не требуется. Для приобретения абонемента рекомендуем иметь справку от терапевта.</p>
+                    </div>
+                </div>
+                
+                <div class="vp-appear">
+                    <div class="faq-card">
+                        <h4 class="text-accent">Есть ли парковка?</h4>
+                        <p>Да, у нас есть бесплатная парковка для клиентов на 50 машиномест. При наличии абонемента парковка бесплатна.</p>
+                    </div>
+                </div>
+                
+                <div class="vp-appear">
+                    <div class="faq-card">
+                        <h4 class="text-accent">Можно ли заниматься с ребенком?</h4>
+                        <p>Да, у нас есть детская комната и специальные программы для детей от 3 лет под присмотром опытных инструкторов.</p>
+                    </div>
+                </div>
+
+                <div class="vp-appear">
+                    <div class="faq-card">
+                        <h4 class="text-accent">Есть ли скидки?</h4>
+                        <p>Да, мы предоставляем скидки студентам, пенсионерам, а также при покупке семейного абонемента.</p>
+                    </div>
+                </div>
+
+                <div class="vp-appear">
+                    <div class="faq-card">
+                        <h4 class="text-accent">Можно ли заморозить абонемент?</h4>
+                        <p>Да, абонемент можно заморозить на срок до 30 дней в год по уважительной причине.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Balance Modal -->
+    <div class="balance-modal" id="balanceModal">
+        <div class="balance-content">
+            <button class="close-balance" id="closeBalance">&times;</button>
+            
+            <div class="balance-header">
+                <h2 class="auth-title">Пополнение баланса</h2>
+                <p class="auth-subtitle">Введите сумму для пополнения</p>
+            </div>
+            
+            <form id="balanceForm">
+                <div class="form-group">
+                    <label class="form-label">Сумма (₽)</label>
+                    <input type="number" name="amount" class="form-input" placeholder="1000" required min="100" max="100000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Способ оплаты</label>
+                    <select class="form-input" name="paymentMethod" required>
+                        <option value="card">Банковская карта</option>
+                        <option value="yoomoney">ЮMoney</option>
+                        <option value="sbp">СБП (Система быстрых платежей)</option>
+                        <option value="qiwi">QIWI</option>
+                    </select>
+                </div>
+                
+                <div class="auth-actions">
+                    <button type="submit" class="btn-auth btn-balance-submit">Пополнить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    
+    <script>
+    // Balance functionality
+    class BalanceManager {
+        constructor() {
+            this.init();
+        }
+
+        init() {
+            this.setupEventListeners();
+        }
+
+        setupEventListeners() {
+            // Обработка клика на баланс в хедере
+            const balanceBtn = document.getElementById('headerBalance');
+            if (balanceBtn) {
+                balanceBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.openBalanceModal();
+                });
+                
+                // Добавляем эффект при наведении
+                balanceBtn.style.cursor = 'pointer';
+                balanceBtn.title = 'Пополнить баланс';
+            }
+
+            // Закрытие модального окна баланса
+            const closeBalance = document.getElementById('closeBalance');
+            if (closeBalance) {
+                closeBalance.addEventListener('click', () => {
+                    this.closeBalanceModal();
+                });
+            }
+
+            // Клик по фону модального окна
+            const balanceModal = document.getElementById('balanceModal');
+            if (balanceModal) {
+                balanceModal.addEventListener('click', (e) => {
+                    if (e.target === balanceModal) {
+                        this.closeBalanceModal();
+                    }
+                });
+            }
+
+            // Обработка формы пополнения
+            const balanceForm = document.getElementById('balanceForm');
+            if (balanceForm) {
+                balanceForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.processDeposit(e.target);
+                });
+            }
+
+            // Закрытие по ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    this.closeBalanceModal();
+                }
+            });
+        }
+
+        openBalanceModal() {
+            const modal = document.getElementById('balanceModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Фокус на поле ввода
+                const amountInput = modal.querySelector('input[name="amount"]');
+                if (amountInput) {
+                    setTimeout(() => amountInput.focus(), 100);
+                }
+            }
+        }
+
+        closeBalanceModal() {
+            const modal = document.getElementById('balanceModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        processDeposit(form) {
+            const amount = parseInt(form.amount.value);
+            const paymentMethod = form.paymentMethod.value;
+            
+            if (!amount || amount < 100 || amount > 100000) {
+                this.showNotification('Введите сумму от 100 до 100 000 ₽', true);
+                return;
+            }
+            
+            if (!window.authManager || !window.authManager.currentUser) {
+                this.showNotification('Пожалуйста, войдите в аккаунт для пополнения баланса', true);
+                
+                // Показываем окно авторизации
+                this.closeBalanceModal();
+                const authModal = document.getElementById('authModal');
+                if (authModal) {
+                    authModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                return;
+            }
+            
+            // Симуляция процесса оплаты
+            const submitBtn = form.querySelector('.btn-balance-submit');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Обработка...';
+            submitBtn.disabled = true;
+            
+            // Симулируем API вызов
+            setTimeout(() => {
+                // Обновляем баланс пользователя
+                window.authManager.currentUser.balance += amount;
+                
+                // Сохраняем транзакцию в историю
+                const transaction = {
+                    id: 'TR-' + Date.now().toString().slice(-8),
+                    userId: window.authManager.currentUser.id,
+                    amount: amount,
+                    type: 'deposit',
+                    method: paymentMethod,
+                    date: new Date().toISOString(),
+                    status: 'completed'
+                };
+                
+                // Сохраняем в localStorage
+                this.saveTransaction(transaction);
+                
+                // Обновляем UI
+                window.authManager.updateUI();
+                
+                // Показываем уведомление
+                this.showNotification(`Баланс успешно пополнен на ${amount.toLocaleString()} ₽`);
+                
+                // Анимация обновления баланса
+                const balanceAmount = document.querySelector('.balance-amount');
+                if (balanceAmount) {
+                    balanceAmount.classList.remove('balance-updated');
+                    void balanceAmount.offsetWidth; // Триггер рефлоу
+                    balanceAmount.classList.add('balance-updated');
+                    
+                    setTimeout(() => {
+                        balanceAmount.classList.remove('balance-updated');
+                    }, 500);
+                }
+                
+                // Закрываем модальное окно
+                this.closeBalanceModal();
+                
+                // Восстанавливаем кнопку
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                form.reset();
+                
+                // Отправляем событие для обновления админки
+                window.dispatchEvent(new CustomEvent('balanceUpdated', {
+                    detail: transaction
+                }));
+                
+            }, 1500);
+        }
+
+        saveTransaction(transaction) {
+            const transactions = JSON.parse(localStorage.getItem('fitness_transactions')) || [];
+            transactions.unshift(transaction);
+            localStorage.setItem('fitness_transactions', JSON.stringify(transactions));
+        }
+
+        showNotification(message, isError = false) {
+            // Создаем простое уведомление
+            const notification = document.createElement('div');
+            notification.className = `notification ${isError ? 'error' : ''}`;
+            notification.textContent = message;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: ${isError ? '#f44336' : '#4CAF50'};
+                color: white;
+                border-radius: 10px;
+                z-index: 99999;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                font-weight: 500;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    }
+    
+    // Функция для получения читаемого названия программы
+    function getProgramName(programKey) {
+        const programs = {
+            'strength': 'Силовой тренинг',
+            'functional': 'Функциональный тренинг',
+            'cardio': 'Кардио тренировки',
+            'yoga': 'Йога и стретчинг',
+            'personal': 'Персональные тренировки',
+            'group': 'Групповые занятия'
+        };
+        return programs[programKey] || programKey;
+    }
+    
+    // Функция для заполнения формы контактов данными пользователя
+    function fillContactForm() {
+        const savedUser = localStorage.getItem('current_user');
+        if (savedUser) {
+            try {
+                const user = JSON.parse(savedUser);
+                
+                // Заполняем поля формы
+                const nameField = document.getElementById('contactName');
+                const phoneField = document.getElementById('contactPhone');
+                const emailField = document.getElementById('contactEmail');
+                
+                if (nameField && user.firstName && user.lastName) {
+                    nameField.value = `${user.firstName} ${user.lastName}`;
+                }
+                
+                if (phoneField && user.phone) {
+                    phoneField.value = user.phone;
+                }
+                
+                if (emailField && user.email) {
+                    emailField.value = user.email;
+                }
+                
+                console.log('Форма контактов заполнена данными пользователя');
+            } catch (error) {
+                console.error('Ошибка при заполнении формы контактов:', error);
+            }
+        }
+    }
+    
+    // Функция для очистки формы контактов
+    function clearContactForm() {
+        const nameField = document.getElementById('contactName');
+        const phoneField = document.getElementById('contactPhone');
+        const emailField = document.getElementById('contactEmail');
+        
+        if (nameField) nameField.value = '';
+        if (phoneField) phoneField.value = '';
+        if (emailField) emailField.value = '';
+        
+        console.log('Форма контактов очищена');
+    }
+    
+    // Функция для обработки отправки формы контактов
+    function handleContactFormSubmit(e) {
+        e.preventDefault();
+        
+        // Получаем данные из формы
+        const name = document.getElementById('contactName').value;
+        const phone = document.getElementById('contactPhone').value;
+        const email = document.getElementById('contactEmail').value;
+        const program = document.getElementById('contactProgram').value;
+        const message = document.getElementById('contactMessage').value;
+        
+        // Проверяем авторизацию
+        const savedUser = localStorage.getItem('current_user');
+        let userInfo = '';
+        
+        if (savedUser) {
+            try {
+                const user = JSON.parse(savedUser);
+                userInfo = `\n\nДанные пользователя:\nID: ${user.id}\nEmail: ${user.email}\nБаланс: ${user.balance || 0} ₽`;
+            } catch (error) {
+                console.error('Ошибка при чтении данных пользователя:', error);
+            }
+        }
+        
+        // Создаем заявку с читаемыми данными
+        const request = {
+            id: Date.now(),
+            date: new Date().toISOString(),
+            name: name,
+            phone: phone,
+            email: email,
+            program: program,
+            programName: getProgramName(program), // Добавляем читаемое название
+            message: message,
+            status: 'pending', // 'pending', 'approved', 'rejected', 'trash'
+            isRead: false,
+            processedBy: null,
+            processedDate: null,
+            notes: '',
+            userInfo: userInfo ? userInfo.replace(/\n/g, ' | ') : '' // Форматируем для лучшей читаемости
+        };
+        
+        // Сохраняем в localStorage
+        const requests = JSON.parse(localStorage.getItem('fitness_requests')) || [];
+        requests.unshift(request); // Добавляем в начало
+        localStorage.setItem('fitness_requests', JSON.stringify(requests));
+        
+        // Логируем данные для отладки
+        console.log('Отправка формы контактов:', {
+            name,
+            phone,
+            email,
+            program: getProgramName(program),
+            message,
+            requestId: request.id
+        });
+        
+        // Показываем уведомление
+        if (window.authManager && window.authManager.showNotification) {
+            window.authManager.showNotification('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+        } else {
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+        }
+        
+        // Сбрасываем форму
+        e.target.reset();
+        
+        // Если пользователь авторизован, снова заполняем форму его данными
+        if (savedUser) {
+            setTimeout(fillContactForm, 100);
+        }
+        
+        // Отправляем событие для обновления админ-панели
+        window.dispatchEvent(new CustomEvent('newContactRequest', { detail: request }));
+        
+        // Показываем уведомление в админке, если она открыта
+        if (window.adminUI) {
+            window.adminUI.showRealTimeNotification('📬 Поступила новая заявка!');
+            window.adminUI.loadRequestsStats();
+        }
+    }
+    
+    // Вызываем при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        // Инициализируем менеджер баланса
+        window.balanceManager = new BalanceManager();
+        
+        // Заполняем форму данными пользователя, если он авторизован
+        fillContactForm();
+        
+        // Если есть authManager, перехватываем методы login и logout
+        if (window.authManager) {
+            // Сохраняем оригинальные методы
+            const originalLogin = authManager.login;
+            const originalLogout = authManager.logout;
+            const originalUpdateUI = authManager.updateUI;
+            
+            // Перехватываем login для заполнения формы
+            authManager.login = function(user) {
+                const result = originalLogin.call(this, user);
+                fillContactForm();
+                return result;
+            };
+            
+            // Перехватываем logout для очистки формы
+            authManager.logout = function() {
+                const result = originalLogout.call(this);
+                clearContactForm();
+                return result;
+            };
+            
+            // Также перехватываем updateUI для обновления формы при смене пользователя
+            authManager.updateUI = function() {
+                const result = originalUpdateUI.call(this);
+                
+                // Обновляем форму контактов при изменении UI
+                if (window.location.pathname.includes('contacts.html')) {
+                    const savedUser = localStorage.getItem('current_user');
+                    if (savedUser) {
+                        fillContactForm();
+                    } else {
+                        clearContactForm();
+                    }
+                }
+                
+                return result;
+            };
+        }
+        
+        // Обработка формы контактов
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            // Удаляем старый обработчик если есть
+            contactForm.removeEventListener('submit', handleContactFormSubmit);
+            // Добавляем новый обработчик
+            contactForm.addEventListener('submit', handleContactFormSubmit);
+        }
+    });
+    
+    // Также обновляем форму при изменении данных пользователя в другой вкладке
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'current_user') {
+            if (event.newValue) {
+                // Пользователь авторизовался или обновил данные
+                setTimeout(fillContactForm, 100);
+            } else {
+                // Пользователь вышел
+                clearContactForm();
+            }
+        }
+    });
+    
+    // Также обновляем форму при любом изменении в базе пользователей
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'fitness_users') {
+            // Проверяем, есть ли текущий пользователь
+            const savedUser = localStorage.getItem('current_user');
+            if (savedUser) {
+                try {
+                    const currentUser = JSON.parse(savedUser);
+                    const users = JSON.parse(localStorage.getItem('fitness_users')) || [];
+                    const updatedUser = users.find(u => u.id === currentUser.id);
+                    
+                    if (updatedUser) {
+                        // Обновляем данные пользователя в localStorage
+                        localStorage.setItem('current_user', JSON.stringify(updatedUser));
+                        // Обновляем форму
+                        setTimeout(fillContactForm, 100);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при обновлении данных пользователя:', error);
+                }
+            }
+        }
+    });
+    
+    // Слушаем события из админ-панели
+    window.addEventListener('newContactRequest', function(event) {
+        console.log('Получено событие новой заявки:', event.detail);
+    });
+    </script>
+</body>
+</html>

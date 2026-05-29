@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин спортпита — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+     <header class="site-header" id="header">
+        <div class="header-inner">
+        <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="programs.html" class="nav-link">Программы</a>
+                <a href="trainers.html" class="nav-link">Тренеры</a>
+                <a href="shop.html" class="nav-link nav-active">Магазин</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+                <a href="order-history.html" class="nav-link">История заказов</a>
+            </nav>
+            
+           <div class="header-actions">
+    <div class="balance" id="headerBalance">
+        <span class="balance-icon">💰</span>
+        <span class="balance-amount">0 ₽</span>
+    </div>
+    <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="headerCartCount">0</span>
+    </a>
+    <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">МАГАЗИН СПОРТПИТА</h1>
+            <p class="hero-sub fade-in">Качественное питание для ваших результатов</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Shop Filters -->
+    <section class="section-sm" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="shop-categories">
+                <button class="shop-category-btn active" data-category="all">Все товары</button>
+                <button class="shop-category-btn" data-category="protein">Протеин</button>
+                <button class="shop-category-btn" data-category="amino">Аминокислоты</button>
+                <button class="shop-category-btn" data-category="vitamins">Витамины</button>
+                <button class="shop-category-btn" data-category="bars">Батончики</button>
+                <button class="shop-category-btn" data-category="accessories">Аксессуары</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-4 products-grid">
+                <!-- Product 1 -->
+                <div class="product-card vp-appear lift" data-category="protein">
+                    <div class="product-badge">ХИТ</div>
+                    <div class="product-image">
+                        <div class="product-placeholder">🥛</div>
+                    </div>
+                    <h3 class="text-accent">Протеин</h3>
+                    <p class="product-brand">Оптимальный нутрицин</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐⭐ <span class="rating-value">4.9</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">3 490 ₽</span>
+                        <span class="old-price">4 200 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="whey-protein">В корзину</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card vp-appear lift" data-category="bars">
+                    <div class="product-badge">НОВИНКА</div>
+                    <div class="product-image">
+                        <div class="product-placeholder">🍫</div>
+                    </div>
+                    <h3 class="text-accent">Протеиновый батончик</h3>
+                    <p class="product-brand">Квест нутрицин</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐ <span class="rating-value">4.7</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">180 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="protein-bar">В корзину</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card vp-appear lift" data-category="amino">
+                    <div class="product-image">
+                        <div class="product-placeholder">💊</div>
+                    </div>
+                    <h3 class="text-accent">Витамин BCAA комплекс</h3>
+                    <p class="product-brand">MyProtein</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐⭐ <span class="rating-value">4.8</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">2 150 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="bcaa-complex">В корзину</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card vp-appear lift" data-category="accessories">
+                    <div class="product-image">
+                        <div class="product-placeholder">🧴</div>
+                    </div>
+                    <h3 class="text-accent">Шейкер профессиональный</h3>
+                    <p class="product-brand">Блендер в бутылке</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐ <span class="rating-value">4.6</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">890 ₽</span>
+                        <span class="old-price">1 200 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="shaker-pro">В корзину</button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card vp-appear lift" data-category="vitamins">
+                    <div class="product-badge">СКИДКА</div>
+                    <div class="product-image">
+                        <div class="product-placeholder">💊</div>
+                    </div>
+                    <h3 class="text-accent">Витамин D3</h3>
+                    <p class="product-brand">Добавки</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐⭐ <span class="rating-value">4.9</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">1 250 ₽</span>
+                        <span class="old-price">1 800 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="vitamin-d3">В корзину</button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card vp-appear lift" data-category="protein">
+                    <div class="product-image">
+                        <div class="product-placeholder">🥛</div>
+                    </div>
+                    <h3 class="text-accent">Казеиновый протеин</h3>
+                    <p class="product-brand">Золотой стандарт</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐ <span class="rating-value">4.7</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">4 200 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="casein-protein">В корзину</button>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card vp-appear lift" data-category="amino">
+                    <div class="product-image">
+                        <div class="product-placeholder">💊</div>
+                    </div>
+                    <h3 class="text-accent">L-глютамин</h3>
+                    <p class="product-brand">Добавки</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐ <span class="rating-value">4.5</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">1 800 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="l-glutamine">В корзину</button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card vp-appear lift" data-category="bars">
+                    <div class="product-image">
+                        <div class="product-placeholder">🍫</div>
+                    </div>
+                    <h3 class="text-accent">Энергетический батончик</h3>
+                    <p class="product-brand">гренаде</p>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐⭐ <span class="rating-value">4.8</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">220 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart" data-product="energy-bar">В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-content">
+            <button class="close-product-modal" id="closeProductModal">&times;</button>
+            
+            <div class="product-modal-header">
+                <div class="product-modal-image" id="productModalImage">
+                    <!-- Эмодзи товара будет здесь -->
+                </div>
+                <div class="product-modal-info">
+                    <h2 id="productModalName">Название товара</h2>
+                    <p class="product-modal-brand" id="productModalBrand">Бренд</p>
+                    <div class="product-modal-rating" id="productModalRating">
+                        <!-- Рейтинг будет здесь -->
+                    </div>
+                    <div class="product-modal-price">
+                        <span class="current-price" id="productModalPrice">0 ₽</span>
+                        <span class="old-price" id="productModalOldPrice" style="display: none;">0 ₽</span>
+                    </div>
+                    <button class="btn-primary" id="addToCartFromModal" style="margin-top: 20px;">Добавить в корзину</button>
+                </div>
+            </div>
+
+            <div class="product-modal-description">
+                <h3>Описание</h3>
+                <p id="productModalDescription">Описание товара будет здесь.</p>
+            </div>
+
+            <div class="product-modal-reviews">
+                <h3>Отзывы</h3>
+                <div class="reviews-list" id="productModalReviews">
+                    <!-- Отзывы будут здесь -->
+                </div>
+                
+                <div id="reviewNotice" class="review-notice" style="display: none;">
+                    <!-- Уведомление о необходимости авторизации или покупки -->
+                </div>
+                
+                <div id="addReviewSection" class="add-review-section" style="display: none;">
+                    <h4>Оставить отзыв</h4>
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <label>Ваша оценка</label>
+                            <div class="rating-stars" id="ratingStars">
+                                <span data-rating="1">★</span>
+                                <span data-rating="2">★</span>
+                                <span data-rating="3">★</span>
+                                <span data-rating="4">★</span>
+                                <span data-rating="5">★</span>
+                            </div>
+                            <input type="hidden" id="reviewRating" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewText">Текст отзыва</label>
+                            <textarea class="form-textarea" id="reviewText" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Отправить отзыв</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <!-- Содержимое модального окна авторизации (такое же как в других файлах) -->
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="shop.js"></script>
+</body>
+</html>

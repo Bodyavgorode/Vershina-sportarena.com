@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренеры — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+     <header class="site-header" id="header">
+        <div class="header-inner">
+          <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="programs.html" class="nav-link">Программы</a>
+                <a href="trainers.html" class="nav-link nav-active">Тренеры</a>
+                <a href="shop.html" class="nav-link">Магазин</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+                <a href="order-history.html" class="nav-link">История заказов</a>
+            </nav>
+            
+            <div class="header-actions">
+    <div class="balance" id="headerBalance">
+        <span class="balance-icon">💰</span>
+        <span class="balance-amount">0 ₽</span>
+    </div>
+    <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="headerCartCount">0</span>
+    </a>
+    <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">НАШИ ТРЕНЕРЫ</h1>
+            <p class="hero-sub fade-in">Профессионалы с большим опытом работы</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Trainers Filter -->
+    <section class="section-sm" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="trainer-categories">
+                <button class="trainer-category-btn active" data-specialization="all">Все тренеры</button>
+                <button class="trainer-category-btn" data-specialization="strength">Силовые</button>
+                <button class="trainer-category-btn" data-specialization="cardio">Кардио</button>
+                <button class="trainer-category-btn" data-specialization="yoga">Йога</button>
+                <button class="trainer-category-btn" data-specialization="functional">Функциональные</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Команда профессионалов</h2>
+            
+            <div class="grid grid-3 trainers-grid">
+                <!-- Тренер 1 -->
+                <div class="trainer-card vp-appear lift" data-specialization="strength" data-trainer="alexey">
+                    <div class="trainer-badge">ОСНОВАТЕЛЬ</div>
+                    <div class="trainer-image">
+                        <div class="trainer-avatar">АП</div>
+                    </div>
+                    <h3 class="text-accent">Алексей Петров</h3>
+                    <p>Сертифицированный тренер по силовому тренингу</p>
+                    
+                    <div class="trainer-stats">
+                        <div class="trainer-stat">
+                            <strong>8 лет</strong>
+                            <span>Опыт работы</span>
+                        </div>
+                        <div class="trainer-stat">
+                            <strong>500+</strong>
+                            <span>Клиентов</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-info">
+                        <p><strong>Специализация:</strong> силовые тренировки, коррекция осанки, реабилитация после травм</p>
+                        <p><strong>Образование:</strong> МГАФК, сертификаты FPA, ACE</p>
+                    </div>
+                    
+                    <div class="trainer-achievements">
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Чемпион России по пауэрлифтингу 2019</li>
+                            <li>Сертифицированный специалист по спортивной реабилитации</li>
+                            <li>Автор методики "Сила без травм"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trainer-specialties">
+                        <span class="specialty-tag">Силовые</span>
+                        <span class="specialty-tag">Реабилитация</span>
+                        <span class="specialty-tag">Осанка</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn-primary appointment-btn" data-trainer="alexey">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Тренер 2 -->
+                <div class="trainer-card vp-appear lift" data-specialization="functional" data-trainer="maria">
+                    <div class="trainer-image">
+                        <div class="trainer-avatar">МИ</div>
+                    </div>
+                    <h3 class="text-accent">Мария Иванова</h3>
+                    <p>Тренер по функциональному тренингу</p>
+                    
+                    <div class="trainer-stats">
+                        <div class="trainer-stat">
+                            <strong>6 лет</strong>
+                            <span>Опыт работы</span>
+                        </div>
+                        <div class="trainer-stat">
+                            <strong>300+</strong>
+                            <span>Клиентов</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-info">
+                        <p><strong>Специализация:</strong> функциональный тренинг, кроссфит, подготовка к марафонам</p>
+                        <p><strong>Образование:</strong> РГУФКСМиТ, сертификаты NASM, CrossFit L1</p>
+                    </div>
+                    
+                    <div class="trainer-achievements">
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Участник чемпионата мира по кроссфиту 2018</li>
+                            <li>Марафонец (личный рекорд 2:45)</li>
+                            <li>Сертифицированный инструктор TRX</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trainer-specialties">
+                        <span class="specialty-tag">Функциональные</span>
+                        <span class="specialty-tag">Кроссфит</span>
+                        <span class="specialty-tag">Марафоны</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn-primary appointment-btn" data-trainer="maria">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Тренер 3 -->
+                <div class="trainer-card vp-appear lift" data-specialization="yoga" data-trainer="dmitry">
+                    <div class="trainer-image">
+                        <div class="trainer-avatar">ДС</div>
+                    </div>
+                    <h3 class="text-accent">Дмитрий Сидоров</h3>
+                    <p>Эксперт по йоге и стретчинг</p>
+                    
+                    <div class="trainer-stats">
+                        <div class="trainer-stat">
+                            <strong>10 лет</strong>
+                            <span>Опыт работы</span>
+                        </div>
+                        <div class="trainer-stat">
+                            <strong>1000+</strong>
+                            <span>Учеников</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-info">
+                        <p><strong>Специализация:</strong> йога, пилатес, стретчинг, мобильность суставов</p>
+                        <p><strong>Образование:</strong> International Yoga Alliance RYT-500, курсы по пилатесу</p>
+                    </div>
+                    
+                    <div class="trainer-achievements">
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Ведущий преподаватель йоги в России</li>
+                            <li>Провел более 5000 часов занятий</li>
+                            <li>Автор курса "Йога для современного человека"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trainer-specialties">
+                        <span class="specialty-tag">Йога</span>
+                        <span class="specialty-tag">Стретчинг</span>
+                        <span class="specialty-tag">Пилатес</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn-primary appointment-btn" data-trainer="dmitry">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Тренер 4 -->
+                <div class="trainer-card vp-appear lift" data-specialization="cardio" data-trainer="ekaterina">
+                    <div class="trainer-badge">ЭКСПЕРТ</div>
+                    <div class="trainer-image">
+                        <div class="trainer-avatar">ЕК</div>
+                    </div>
+                    <h3 class="text-accent">Екатерина Козлова</h3>
+                    <p>Специалист по кардио тренировкам</p>
+                    
+                    <div class="trainer-stats">
+                        <div class="trainer-stat">
+                            <strong>5 лет</strong>
+                            <span>Опыт работы</span>
+                        </div>
+                        <div class="trainer-stat">
+                            <strong>200+</strong>
+                            <span>Клиентов</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-info">
+                        <p><strong>Специализация:</strong> кардио тренировки, снижение веса, интервальные тренировки</p>
+                        <p><strong>Образование:</strong> МГУ, сертификаты ACSM, FPA</p>
+                    </div>
+                    
+                    <div class="trainer-achievements">
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Помогла более 200 клиентам снизить вес</li>
+                            <li>Специалист по спортивной диетологии</li>
+                            <li>Разработчик программы "Кардио для жизни"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trainer-specialties">
+                        <span class="specialty-tag">Кардио</span>
+                        <span class="specialty-tag">Похудение</span>
+                        <span class="specialty-tag">Диетология</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn-primary appointment-btn" data-trainer="ekaterina">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Тренер 5 -->
+                <div class="trainer-card vp-appear lift" data-specialization="strength" data-trainer="sergey">
+                    <div class="trainer-image">
+                        <div class="trainer-avatar">СВ</div>
+                    </div>
+                    <h3 class="text-accent">Сергей Васильев</h3>
+                    <p>Тренер по бодибилдингу</p>
+                    
+                    <div class="trainer-stats">
+                        <div class="trainer-stat">
+                            <strong>12 лет</strong>
+                            <span>Опыт работы</span>
+                        </div>
+                        <div class="trainer-stat">
+                            <strong>400+</strong>
+                            <span>Клиентов</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-info">
+                        <p><strong>Специализация:</strong> бодибилдинг, пауэрлифтинг, спортивное питание</p>
+                        <p><strong>Образование:</strong> НГУ им. Лесгафта, сертификаты IFBB, WPC</p>
+                    </div>
+                    
+                    <div class="trainer-achievements">
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Чемпион Европы по бодибилдингу 2017</li>
+                            <li>Судья категории IFBB</li>
+                            <li>Специалист по спортивной фармакологии</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trainer-specialties">
+                        <span class="specialty-tag">Бодибилдинг</span>
+                        <span class="specialty-tag">Пауэрлифтинг</span>
+                        <span class="specialty-tag">Питание</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn-primary appointment-btn" data-trainer="sergey">Записаться</button>
+                    </div>
+                </div>
+
+                <!-- Тренер 6 -->
+                <div class="trainer-card vp-appear lift" data-specialization="functional" data-trainer="anna">
+                    <div class="trainer-image">
+                        <div class="trainer-avatar">АН</div>
+                    </div>
+                    <h3 class="text-accent">Анна Николаева</h3>
+                    <p>Инструктор групповых программ</p>
+                    
+                    <div class="trainer-stats">
+                        <div class="trainer-stat">
+                            <strong>7 лет</strong>
+                            <span>Опыт работы</span>
+                        </div>
+                        <div class="trainer-stat">
+                            <strong>600+</strong>
+                            <span>Учеников</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-info">
+                        <p><strong>Специализация:</strong> групповые занятия, аэробика, танцевальные направления</p>
+                        <p><strong>Образование:</strong> РГУФКСМиТ, сертификаты Les Mills, Zumba</p>
+                    </div>
+                    
+                    <div class="trainer-achievements">
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Сертифицированный инструктор Zumba Fitness</li>
+                            <li>Ведущий тренер групповых программ в Москве</li>
+                            <li>Участник международных фитнес-конвенций</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="trainer-specialties">
+                        <span class="specialty-tag">Групповые</span>
+                        <span class="specialty-tag">Аэробика</span>
+                        <span class="specialty-tag">Танцы</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn-primary appointment-btn" data-trainer="anna">Записаться</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="grid grid-4">
+                <div class="text-center vp-appear">
+                    <h3 class="text-accent">15+</h3>
+                    <p>Профессиональных тренеров</p>
+                </div>
+                <div class="text-center vp-appear">
+                    <h3 class="text-accent">50+</h3>
+                    <p>Сертификатов и наград</p>
+                </div>
+                <div class="text-center vp-appear">
+                    <h3 class="text-accent">3000+</h3>
+                    <p>Довольных клиентов</p>
+                </div>
+                <div class="text-center vp-appear">
+                    <h3 class="text-accent">100%</h3>
+                    <p>Гарантия результата</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center vp-appear">
+                <h2 class="mb-2">Не знаете, какого тренера выбрать?</h2>
+                <p class="mb-3">Мы поможем подобрать идеального тренера под ваши цели и предпочтения</p>
+                <button class="btn-primary lift" id="consultationBtn">Получить консультацию</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модальные окна тренеров -->
+    
+    <!-- Алексей Петров -->
+    <div class="trainer-modal" id="trainerModal_alexey">
+        <div class="trainer-content">
+            <button class="close-trainer" data-trainer="alexey">&times;</button>
+            <div class="trainer-modal-header">
+                <div class="trainer-modal-avatar">АП</div>
+                <div class="trainer-modal-info">
+                    <h2 class="text-accent">Алексей Петров</h2>
+                    <p class="trainer-modal-subtitle">Основатель клуба "Вершина"</p>
+                    <div class="trainer-modal-badges">
+                        <span class="trainer-badge">ОСНОВАТЕЛЬ</span>
+                        <span class="specialty-tag">Силовые</span>
+                        <span class="specialty-tag">Реабилитация</span>
+                        <span class="specialty-tag">Осанка</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-stats">
+                <div class="trainer-modal-stat">
+                    <strong>8 лет</strong>
+                    <span>Опыт работы</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>500+</strong>
+                    <span>Клиентов</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>95%</strong>
+                    <span>Успешных результатов</span>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">О тренере</h3>
+                <p>Алексей — основатель фитнес-клуба "Вершина" и один из самых востребованных тренеров Москвы. Специализируется на силовом тренинге, коррекции осанки и реабилитации после травм. Его авторская методика "Сила без травм" помогла сотням клиентов безопасно достичь своих целей.</p>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Образование и сертификаты</h3>
+                <ul class="certificates-list">
+                    <li>Московская государственная академия физической культуры (МГАФК)</li>
+                    <li>Сертификат FPA (Fitness Professionals Association)</li>
+                    <li>Сертификат ACE (American Council on Exercise)</li>
+                    <li>Сертифицированный специалист по спортивной реабилитации</li>
+                    <li>Курс "Коррекция осанки и работа с мышечными дисбалансами"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Достижения</h3>
+                <ul class="achievements-list">
+                    <li>Чемпион России по пауэрлифтингу 2019</li>
+                    <li>Автор методики "Сила без травм"</li>
+                    <li>Спикер международной фитнес-конференции 2022</li>
+                    <li>Тренер года по версии "Fitness Awards 2021"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Методика тренировок</h3>
+                <p>Алексей использует индивидуальный подход к каждому клиенту, уделяя особое внимание технике выполнения упражнений. Его тренировки сочетают силовые упражнения, функциональный тренинг и элементы ЛФК для достижения максимального результата без риска травм.</p>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-primary appointment-btn" data-trainer="alexey">Записаться к тренеру</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Мария Иванова -->
+    <div class="trainer-modal" id="trainerModal_maria">
+        <div class="trainer-content">
+            <button class="close-trainer" data-trainer="maria">&times;</button>
+            <div class="trainer-modal-header">
+                <div class="trainer-modal-avatar">МИ</div>
+                <div class="trainer-modal-info">
+                    <h2 class="text-accent">Мария Иванова</h2>
+                    <p class="trainer-modal-subtitle">Тренер по функциональному тренингу</p>
+                    <div class="trainer-modal-badges">
+                        <span class="specialty-tag">Функциональные</span>
+                        <span class="specialty-tag">Кроссфит</span>
+                        <span class="specialty-tag">Марафоны</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-stats">
+                <div class="trainer-modal-stat">
+                    <strong>6 лет</strong>
+                    <span>Опыт работы</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>300+</strong>
+                    <span>Клиентов</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>42</strong>
+                    <span>Марафона</span>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">О тренере</h3>
+                <p>Мария — профессиональный тренер по функциональному тренингу и опытная марафонец. Специализируется на подготовке к соревнованиям, улучшении выносливости и функциональной силе. Ее энергия и мотивация заряжают клиентов на достижение выдающихся результатов.</p>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Образование и сертификаты</h3>
+                <ul class="certificates-list">
+                    <li>Российский государственный университет физической культуры, спорта, молодежи и туризма (РГУФКСМиТ)</li>
+                    <li>Сертификат NASM (National Academy of Sports Medicine)</li>
+                    <li>Сертификат CrossFit L1</li>
+                    <li>Сертифицированный инструктор TRX</li>
+                    <li>Курс "Спортивная диетология и нутрициология"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Достижения</h3>
+                <ul class="achievements-list">
+                    <li>Участник чемпионата мира по кроссфиту 2018</li>
+                    <li>Личный рекорд в марафоне — 2 часа 45 минут</li>
+                    <li>Победитель Московского марафона 2020</li>
+                    <li>Тренер команды-победителя "Фитнес-битвы 2022"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Методика тренировок</h3>
+                <p>Мария разрабатывает индивидуальные программы, сочетающие функциональный тренинг, кардионагрузки и работу с собственным весом. Особое внимание уделяет технике бега и развитию выносливости. Ее тренировки динамичны, разнообразны и максимально эффективны.</p>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-primary appointment-btn" data-trainer="maria">Записаться к тренеру</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дмитрий Сидоров -->
+    <div class="trainer-modal" id="trainerModal_dmitry">
+        <div class="trainer-content">
+            <button class="close-trainer" data-trainer="dmitry">&times;</button>
+            <div class="trainer-modal-header">
+                <div class="trainer-modal-avatar">ДС</div>
+                <div class="trainer-modal-info">
+                    <h2 class="text-accent">Дмитрий Сидоров</h2>
+                    <p class="trainer-modal-subtitle">Эксперт по йоге и стретчинг</p>
+                    <div class="trainer-modal-badges">
+                        <span class="specialty-tag">Йога</span>
+                        <span class="specialty-tag">Стретчинг</span>
+                        <span class="specialty-tag">Пилатес</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-stats">
+                <div class="trainer-modal-stat">
+                    <strong>10 лет</strong>
+                    <span>Опыт работы</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>1000+</strong>
+                    <span>Учеников</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>5000+</strong>
+                    <span>Часов занятий</span>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">О тренере</h3>
+                <p>Дмитрий — один из ведущих преподавателей йоги в России с 10-летним опытом. Прошел обучение в Индии и США, владеет различными стилями йоги. Специализируется на хатха-йоге, стретчинге и пилатесе. Помогает клиентам обрести гармонию, гибкость и избавиться от стресса.</p>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Образование и сертификаты</h3>
+                <ul class="certificates-list">
+                    <li>International Yoga Alliance RYT-500</li>
+                    <li>Сертификат преподавателя хатха-йоги (Индия, Ришикеш)</li>
+                    <li>Сертификат по пилатесу (STOTT PILATES)</li>
+                    <li>Курс "Йога-терапия позвоночника"</li>
+                    <li>Сертификат "Медитация и осознанность"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Достижения</h3>
+                <ul class="achievements-list">
+                    <li>Ведущий преподаватель йоги в России</li>
+                    <li>Автор курса "Йога для современного человека"</li>
+                    <li>Провел более 5000 часов групповых и индивидуальных занятий</li>
+                    <li>Участник международных йога-фестивалей</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Методика тренировок</h3>
+                <p>Дмитрий сочетает традиционные практики йоги с современными подходами к фитнесу. Его занятия подходят как для начинающих, так и для продвинутых практиков. Особое внимание уделяет правильному дыханию, технике асан и осознанности. Тренировки помогают улучшить гибкость, снять напряжение и укрепить тело.</p>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-primary appointment-btn" data-trainer="dmitry">Записаться к тренеру</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Екатерина Козлова -->
+    <div class="trainer-modal" id="trainerModal_ekaterina">
+        <div class="trainer-content">
+            <button class="close-trainer" data-trainer="ekaterina">&times;</button>
+            <div class="trainer-modal-header">
+                <div class="trainer-modal-avatar">ЕК</div>
+                <div class="trainer-modal-info">
+                    <h2 class="text-accent">Екатерина Козлова</h2>
+                    <p class="trainer-modal-subtitle">Специалист по кардио тренировкам</p>
+                    <div class="trainer-modal-badges">
+                        <span class="trainer-badge">ЭКСПЕРТ</span>
+                        <span class="specialty-tag">Кардио</span>
+                        <span class="specialty-tag">Похудение</span>
+                        <span class="specialty-tag">Диетология</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-stats">
+                <div class="trainer-modal-stat">
+                    <strong>5 лет</strong>
+                    <span>Опыт работы</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>200+</strong>
+                    <span>Клиентов</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>15 кг</strong>
+                    <span>Среднее снижение веса</span>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">О тренере</h3>
+                <p>Екатерина — эксперт в области кардио тренировок и снижения веса. Специализируется на интервальных тренировках, жиросжигании и спортивной диетологии. Помогла более 200 клиентам достичь своих целей в похудении и улучшить физическую форму.</p>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Образование и сертификаты</h3>
+                <ul class="certificates-list">
+                    <li>Московский государственный университет (МГУ)</li>
+                    <li>Сертификат ACSM (American College of Sports Medicine)</li>
+                    <li>Сертификат FPA (Fitness Professionals Association)</li>
+                    <li>Сертификат "Спортивная диетология"</li>
+                    <li>Курс "Интервальные тренировки высокой интенсивности"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Достижения</h3>
+                <ul class="achievements-list">
+                    <li>Разработчик программы "Кардио для жизни"</li>
+                    <li>Эксперт в области спортивной диетологии</li>
+                    <li>Автор статей о фитнесе и здоровом питании</li>
+                    <li>Участник конференции "Современные подходы к снижению веса"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Методика тренировок</h3>
+                <p>Екатерина использует научный подход к тренировкам, сочетая кардионагрузки, силовые упражнения и индивидуальную программу питания. Ее методика включает интервальные тренировки, работу с пульсовыми зонами и постоянный мониторинг прогресса. Результат — эффективное и безопасное снижение веса.</p>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-primary appointment-btn" data-trainer="ekaterina">Записаться к тренеру</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сергей Васильев -->
+    <div class="trainer-modal" id="trainerModal_sergey">
+        <div class="trainer-content">
+            <button class="close-trainer" data-trainer="sergey">&times;</button>
+            <div class="trainer-modal-header">
+                <div class="trainer-modal-avatar">СВ</div>
+                <div class="trainer-modal-info">
+                    <h2 class="text-accent">Сергей Васильев</h2>
+                    <p class="trainer-modal-subtitle">Тренер по бодибилдингу</p>
+                    <div class="trainer-modal-badges">
+                        <span class="specialty-tag">Бодибилдинг</span>
+                        <span class="specialty-tag">Пауэрлифтинг</span>
+                        <span class="specialty-tag">Питание</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-stats">
+                <div class="trainer-modal-stat">
+                    <strong>12 лет</strong>
+                    <span>Опыт работы</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>400+</strong>
+                    <span>Клиентов</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>3</strong>
+                    <span>Титула чемпиона</span>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">О тренере</h3>
+                <p>Сергей — профессиональный тренер по бодибилдингу с 12-летним опытом. Чемпион Европы по бодибилдингу, судья категории IFBB. Специализируется на наборе мышечной массы, подготовке к соревнованиям и спортивной фармакологии.</p>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Образование и сертификаты</h3>
+                <ul class="certificates-list">
+                    <li>Национальный государственный университет физической культуры, спорта и здоровья им. Лесгафта (НГУ им. Лесгафта)</li>
+                    <li>Сертификат IFBB (International Federation of Bodybuilding and Fitness)</li>
+                    <li>Сертификат WPC (World Powerlifting Congress)</li>
+                    <li>Сертификат "Спортивная фармакология"</li>
+                    <li>Курс "Питание в бодибилдинге"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Достижения</h3>
+                <ul class="achievements-list">
+                    <li>Чемпион Европы по бодибилдингу 2017</li>
+                    <li>Судья категории IFBB</li>
+                    <li>Тренер 5 чемпионов России</li>
+                    <li>Автор методики "Набор чистой мышечной массы"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Методика тренировок</h3>
+                <p>Сергей разрабатывает индивидуальные программы, основанные на принципах прогрессивной нагрузки, периодизации и точного контроля питания. Его методика включает работу с базовыми упражнениями, изолирующую работу и специализированные техники для максимального мышечного роста.</p>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-primary appointment-btn" data-trainer="sergey">Записаться к тренеру</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Анна Николаева -->
+    <div class="trainer-modal" id="trainerModal_anna">
+        <div class="trainer-content">
+            <button class="close-trainer" data-trainer="anna">&times;</button>
+            <div class="trainer-modal-header">
+                <div class="trainer-modal-avatar">АН</div>
+                <div class="trainer-modal-info">
+                    <h2 class="text-accent">Анна Николаева</h2>
+                    <p class="trainer-modal-subtitle">Инструктор групповых программ</p>
+                    <div class="trainer-modal-badges">
+                        <span class="specialty-tag">Групповые</span>
+                        <span class="specialty-tag">Аэробика</span>
+                        <span class="specialty-tag">Танцы</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-stats">
+                <div class="trainer-modal-stat">
+                    <strong>7 лет</strong>
+                    <span>Опыт работы</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>600+</strong>
+                    <span>Учеников</span>
+                </div>
+                <div class="trainer-modal-stat">
+                    <strong>5</strong>
+                    <span>Направлений</span>
+                </div>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">О тренере</h3>
+                <p>Анна — ведущий инструктор групповых программ в Москве с 7-летним опытом. Специализируется на аэробике, танцевальных направлениях и функциональных групповых тренировках. Ее занятия известны своей энергичной атмосферой и высокой эффективностью.</p>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Образование и сертификаты</h3>
+                <ul class="certificates-list">
+                    <li>Российский государственный университет физической культуры, спорта, молодежи и туризма (РГУФКСМиТ)</li>
+                    <li>Сертификат Les Mills (BodyPump, BodyCombat)</li>
+                    <li>Сертификат Zumba Fitness</li>
+                    <li>Сертификат "Аэробика и степ-аэробика"</li>
+                    <li>Курс "Танцевальная фитнес-хореография"</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Достижения</h3>
+                <ul class="achievements-list">
+                    <li>Сертифицированный инструктор Zumba Fitness</li>
+                    <li>Ведущий тренер групповых программ в Москве</li>
+                    <li>Участник международных фитнес-конвенций</li>
+                    <li>Разработчик авторских танцевальных программ</li>
+                </ul>
+            </div>
+            
+            <div class="trainer-modal-section">
+                <h3 class="text-accent">Методика тренировок</h3>
+                <p>Анна создает динамичные и разнообразные групповые занятия, сочетающие кардионагрузки, силовые упражнения и танцевальные элементы. Ее тренировки подходят для любого уровня подготовки и помогают не только улучшить физическую форму, но и получить заряд положительных эмоций.</p>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-primary appointment-btn" data-trainer="anna">Записаться к тренеру</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h2 class="text-accent">Заявка отправлена!</h2>
+            <p>Мы свяжемся с вами в течение 15 минут для подтверждения записи</p>
+            <button class="btn-primary apple-btn" id="closeSuccess">Понятно</button>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Balance Modal -->
+    <div class="balance-modal" id="balanceModal">
+        <div class="balance-content">
+            <button class="close-balance" id="closeBalance">&times;</button>
+            
+            <div class="balance-header">
+                <h2 class="auth-title">Пополнение баланса</h2>
+                <p class="auth-subtitle">Введите сумму для пополнения</p>
+            </div>
+            
+            <form id="balanceForm">
+                <div class="form-group">
+                    <label class="form-label">Сумма (₽)</label>
+                    <input type="number" name="amount" class="form-input" placeholder="1000" required min="100" max="100000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Способ оплаты</label>
+                    <select class="form-input" name="paymentMethod" required>
+                        <option value="card">Банковская карта</option>
+                        <option value="yoomoney">ЮMoney</option>
+                        <option value="sbp">СБП (Система быстрых платежей)</option>
+                        <option value="qiwi">QIWI</option>
+                    </select>
+                </div>
+                
+                <div class="auth-actions">
+                    <button type="submit" class="btn-auth btn-balance-submit">Пополнить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Balance functionality
+        class BalanceManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // Обработка клика на баланс в хедере
+                const balanceBtn = document.getElementById('headerBalance');
+                if (balanceBtn) {
+                    balanceBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.openBalanceModal();
+                    });
+                    
+                    // Добавляем эффект при наведении
+                    balanceBtn.style.cursor = 'pointer';
+                    balanceBtn.title = 'Пополнить баланс';
+                }
+
+                // Закрытие модального окна баланса
+                const closeBalance = document.getElementById('closeBalance');
+                if (closeBalance) {
+                    closeBalance.addEventListener('click', () => {
+                        this.closeBalanceModal();
+                    });
+                }
+
+                // Клик по фону модального окна
+                const balanceModal = document.getElementById('balanceModal');
+                if (balanceModal) {
+                    balanceModal.addEventListener('click', (e) => {
+                        if (e.target === balanceModal) {
+                            this.closeBalanceModal();
+                        }
+                    });
+                }
+
+                // Обработка формы пополнения
+                const balanceForm = document.getElementById('balanceForm');
+                if (balanceForm) {
+                    balanceForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.processDeposit(e.target);
+                    });
+                }
+
+                // Закрытие по ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeBalanceModal();
+                    }
+                });
+            }
+
+            openBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Фокус на поле ввода
+                    const amountInput = modal.querySelector('input[name="amount"]');
+                    if (amountInput) {
+                        setTimeout(() => amountInput.focus(), 100);
+                    }
+                }
+            }
+
+            closeBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            processDeposit(form) {
+                const amount = parseInt(form.amount.value);
+                const paymentMethod = form.paymentMethod.value;
+                
+                if (!amount || amount < 100 || amount > 100000) {
+                    this.showNotification('Введите сумму от 100 до 100 000 ₽', true);
+                    return;
+                }
+                
+                if (!window.authManager || !window.authManager.currentUser) {
+                    this.showNotification('Пожалуйста, войдите в аккаунт для пополнения баланса', true);
+                    
+                    // Показываем окно авторизации
+                    this.closeBalanceModal();
+                    const authModal = document.getElementById('authModal');
+                    if (authModal) {
+                        authModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                    return;
+                }
+                
+                // Симуляция процесса оплаты
+                const submitBtn = form.querySelector('.btn-balance-submit');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Обработка...';
+                submitBtn.disabled = true;
+                
+                // Симулируем API вызов
+                setTimeout(() => {
+                    // Обновляем баланс пользователя
+                    window.authManager.currentUser.balance += amount;
+                    
+                    // Сохраняем транзакцию в историю
+                    const transaction = {
+                        id: 'TR-' + Date.now().toString().slice(-8),
+                        userId: window.authManager.currentUser.id,
+                        amount: amount,
+                        type: 'deposit',
+                        method: paymentMethod,
+                        date: new Date().toISOString(),
+                        status: 'completed'
+                    };
+                    
+                    // Сохраняем в localStorage
+                    this.saveTransaction(transaction);
+                    
+                    // Обновляем UI
+                    window.authManager.updateUI();
+                    
+                    // Показываем уведомление
+                    this.showNotification(`Баланс успешно пополнен на ${amount.toLocaleString()} ₽`);
+                    
+                    // Анимация обновления баланса
+                    const balanceAmount = document.querySelector('.balance-amount');
+                    if (balanceAmount) {
+                        balanceAmount.classList.remove('balance-updated');
+                        void balanceAmount.offsetWidth; // Триггер рефлоу
+                        balanceAmount.classList.add('balance-updated');
+                        
+                        setTimeout(() => {
+                            balanceAmount.classList.remove('balance-updated');
+                        }, 500);
+                    }
+                    
+                    // Закрываем модальное окно
+                    this.closeBalanceModal();
+                    
+                    // Восстанавливаем кнопку
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                    
+                    // Отправляем событие для обновления админки
+                    window.dispatchEvent(new CustomEvent('balanceUpdated', {
+                        detail: transaction
+                    }));
+                    
+                }, 1500);
+            }
+
+            saveTransaction(transaction) {
+                const transactions = JSON.parse(localStorage.getItem('fitness_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('fitness_transactions', JSON.stringify(transactions));
+            }
+
+            showNotification(message, isError = false) {
+                // Создаем простое уведомление
+                const notification = document.createElement('div');
+                notification.className = `notification ${isError ? 'error' : ''}`;
+                notification.textContent = message;
+                
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 1rem 1.5rem;
+                    background: ${isError ? '#f44336' : '#4CAF50'};
+                    color: white;
+                    border-radius: 10px;
+                    z-index: 99999;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                    font-weight: 500;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        }
+
+        // Функционал для модальных окон тренеров и записи
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализируем менеджер баланса
+            window.balanceManager = new BalanceManager();
+            
+            // Открытие модальных окон тренеров при клике на карточку
+            document.querySelectorAll('.trainer-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Проверяем, не был ли клик по кнопке записи
+                    if (!e.target.closest('.appointment-btn')) {
+                        const trainer = this.getAttribute('data-trainer');
+                        const modal = document.getElementById(`trainerModal_${trainer}`);
+                        if (modal) {
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        }
+                    }
+                });
+            });
+
+            // Закрытие модальных окон тренеров
+            document.querySelectorAll('.close-trainer').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const trainer = this.getAttribute('data-trainer');
+                    const modal = document.getElementById(`trainerModal_${trainer}`);
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+
+            // Закрытие по клику на фон
+            document.querySelectorAll('.trainer-modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+
+            // Закрытие по ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.trainer-modal.active').forEach(modal => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                }
+            });
+
+            // ОБНОВЛЕНО: Кнопки "Записаться" - переход на appointment.html
+            document.querySelectorAll('.appointment-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Предотвращаем всплытие события
+                    
+                    const trainer = this.getAttribute('data-trainer');
+                    // Перенаправляем на страницу записи с параметром тренера
+                    if (trainer) {
+                        window.location.href = `appointment.html?trainer=${trainer}`;
+                    } else {
+                        window.location.href = 'appointment.html';
+                    }
+                });
+            });
+
+            // ОБНОВЛЕНО: Кнопка "Получить консультацию" - переход на appointment.html
+            const consultationBtn = document.getElementById('consultationBtn');
+            if (consultationBtn) {
+                consultationBtn.addEventListener('click', function() {
+                    window.location.href = 'appointment.html';
+                });
+            }
+
+            // Кнопки "Записаться к тренеру" в модальных окнах
+            document.querySelectorAll('.trainer-modal .appointment-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const trainer = this.getAttribute('data-trainer');
+                    if (trainer) {
+                        window.location.href = `appointment.html?trainer=${trainer}`;
+                    }
+                });
+            });
+
+            // Фильтрация тренеров по специализации
+            const trainerButtons = document.querySelectorAll('.trainer-category-btn');
+            const trainerCards = document.querySelectorAll('.trainer-card');
+            
+            if (trainerButtons.length > 0) {
+                trainerButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        trainerButtons.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        const specialization = this.getAttribute('data-specialization');
+                        
+                        trainerCards.forEach(card => {
+                            if (specialization === 'all' || card.getAttribute('data-specialization') === specialization) {
+                                card.style.display = 'block';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0)';
+                                }, 50);
+                            } else {
+                                card.style.opacity = '0';
+                                card.style.transform = 'translateY(20px)';
+                                setTimeout(() => {
+                                    card.style.display = 'none';
+                                }, 300);
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

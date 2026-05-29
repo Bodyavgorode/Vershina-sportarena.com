@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вершина — Премиальный фитнес-клуб</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+   <!-- Header -->
+<header class="site-header" id="header">
+    <div class="header-inner">
+        <a href="index.html" class="brand-link">
+            <div class="brand motion vp-appear">
+                <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+                <div>
+                    <div class="brand-title">ВЕРШИНА</div>
+                    <div class="brand-subtitle">СПОРТАРЕНА</div>
+                </div>
+            </div>
+        </a>
+        
+        <nav class="site-nav motion vp-appear">
+            <a href="index.html" class="nav-link nav-active">Главная</a>
+            <a href="programs.html" class="nav-link">Программы</a>
+            <a href="trainers.html" class="nav-link">Тренеры</a>
+            <a href="shop.html" class="nav-link">Магазин</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="about.html" class="nav-link">О клубе</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+            <a href="order-history.html" class="nav-link">История заказов</a>
+        </nav>
+        
+        <div class="header-actions">
+            <div class="balance" id="headerBalance">
+                <span class="balance-icon">💰</span>
+                <span class="balance-amount">0 ₽</span>
+            </div>
+            <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="headerCartCount">0</span>
+            </a>
+            <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+        </div>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">ДОСТИГАЙТЕ СВОЕЙ ВЕРШИНЫ</h1>
+            <p class="hero-sub fade-in">Премиальный фитнес-клуб с современным оборудованием и профессиональными тренерами. Начните свой путь к идеальной форме сегодня.</p>
+            <a href="programs.html" class="btn-primary fade-in lift">Начать тренироваться</a>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Почему выбирают нас</h2>
+            <div class="grid grid-3">
+                <div class="feature-item vp-appear">
+                    <div class="feature-icon">💪</div>
+                    <h3>Современное оборудование</h3>
+                    <p>Тренажеры последнего поколения от ведущих мировых производителей</p>
+                </div>
+                <div class="feature-item vp-appear">
+                    <div class="feature-icon">👨‍💼</div>
+                    <h3>Профессиональные тренеры</h3>
+                    <p>Сертифицированные специалисты с опытом работы от 5 лет</p>
+                </div>
+                <div class="feature-item vp-appear">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Индивидуальный подход</h3>
+                    <p>Персональные программы тренировок и питания для каждого клиента</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Preview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Популярные программы</h2>
+            <div class="grid grid-3">
+                <div class="program-card vp-appear lift">
+                    <h3 class="text-accent">Силовой тренинг</h3>
+                    <p>Развитие силы и мышечной массы под руководством опытных тренеров</p>
+                    <a href="programs.html" class="btn-primary">Узнать больше</a>
+                </div>
+                <div class="program-card vp-appear lift">
+                    <h3 class="text-accent">Функциональный тренинг</h3>
+                    <p>Улучшение выносливости и координации с помощью современных методик</p>
+                    <a href="programs.html" class="btn-primary">Узнать больше</a>
+                </div>
+                <div class="program-card vp-appear lift">
+                    <h3 class="text-accent">Кардио тренировки</h3>
+                    <p>Эффективное жиросжигание и укрепление сердечно-сосудистой системы</p>
+                    <a href="programs.html" class="btn-primary">Узнать больше</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="text-center vp-appear">
+                <h2 class="mb-2">Готовы начать?</h2>
+                <p class="mb-3">Присоединяйтесь к нашему клубу сегодня и получите первую консультацию бесплатно</p>
+                <a href="contacts.html" class="btn-primary lift">Записаться на пробную тренировку</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="vk-api.js"></script>
+<script src="vk-scheduler.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на тренировку — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link nav-active">Главная</a>
+                <a href="programs.html" class="nav-link">Программы</a>
+                <a href="trainers.html" class="nav-link">Тренеры</a>
+                <a href="shop.html" class="nav-link">Магазин</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+                <a href="order-history.html" class="nav-link">История заказов</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="balance" id="headerBalance">
+                    <span class="balance-icon">💰</span>
+                    <span class="balance-amount">0 ₽</span>
+                </div>
+                <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="headerCartCount">0</span>
+                </a>
+                <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">ЗАПИСЬ НА ТРЕНИРОВКУ</h1>
+            <p class="hero-sub fade-in">Начните свой путь к идеальной форме</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Appointment Form Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <!-- Form -->
+                <div class="vp-appear">
+                    <div class="card glass-card">
+                        <h2 class="text-accent mb-3">Заполните данные для записи</h2>
+                        
+                        <form id="appointmentForm" class="appointment-form">
+                            <div class="form-group">
+                                <label class="form-label">Выберите программу</label>
+                                <select class="form-input" id="programSelect" required>
+                                    <option value="">Выберите программу тренировок</option>
+                                    <option value="strength">Силовой тренинг - 5 000 ₽/месяц</option>
+                                    <option value="functional">Функциональный тренинг - 4 500 ₽/месяц</option>
+                                    <option value="cardio">Кардио тренировки - 3 500 ₽/месяц</option>
+                                    <option value="yoga">Йога и стретчинг - 4 000 ₽/месяц</option>
+                                    <option value="personal">Персональные тренировки - 15 000 ₽/месяц</option>
+                                    <option value="group">Групповые занятия - 3 000 ₽/месяц</option>
+                                    <option value="consultation">Бесплатная консультация</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Предпочтительный тренер</label>
+                                <select class="form-input" id="trainerSelect">
+                                    <option value="">Любой доступный тренер</option>
+                                    <option value="alexey">Алексей Петров (Силовые)</option>
+                                    <option value="maria">Мария Иванова (Функциональные)</option>
+                                    <option value="dmitry">Дмитрий Сидоров (Йога)</option>
+                                    <option value="ekaterina">Екатерина Козлова (Кардио)</option>
+                                    <option value="sergey">Сергей Васильев (Бодибилдинг)</option>
+                                    <option value="anna">Анна Николаева (Групповые)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Ваше имя</label>
+                                <input type="text" class="form-input" id="appointmentName" placeholder="Иван Иванов" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Телефон</label>
+                                <input type="tel" class="form-input" id="appointmentPhone" placeholder="+7 (999) 999-99-99" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" id="appointmentEmail" placeholder="ivan@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Предпочтительное время</label>
+                                <select class="form-input" id="appointmentTime" required>
+                                    <option value="">Выберите время</option>
+                                    <option value="morning">Утро (07:00-10:00)</option>
+                                    <option value="day">День (12:00-15:00)</option>
+                                    <option value="evening">Вечер (18:00-21:00)</option>
+                                    <option value="flexible">Любое удобное время</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Уровень подготовки</label>
+                                <select class="form-input" id="appointmentLevel" required>
+                                    <option value="">Выберите уровень</option>
+                                    <option value="beginner">Начинающий</option>
+                                    <option value="intermediate">Средний</option>
+                                    <option value="advanced">Продвинутый</option>
+                                    <option value="professional">Профессионал</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Цели тренировок</label>
+                                <div class="goals-grid">
+                                    <label class="goal-checkbox">
+                                        <input type="checkbox" name="goals" value="weight_loss">
+                                        <span class="checkmark"></span>
+                                        Похудение
+                                    </label>
+                                    <label class="goal-checkbox">
+                                        <input type="checkbox" name="goals" value="muscle_gain">
+                                        <span class="checkmark"></span>
+                                        Набор мышечной массы
+                                    </label>
+                                    <label class="goal-checkbox">
+                                        <input type="checkbox" name="goals" value="strength">
+                                        <span class="checkmark"></span>
+                                        Развитие силы
+                                    </label>
+                                    <label class="goal-checkbox">
+                                        <input type="checkbox" name="goals" value="endurance">
+                                        <span class="checkmark"></span>
+                                        Выносливость
+                                    </label>
+                                    <label class="goal-checkbox">
+                                        <input type="checkbox" name="goals" value="flexibility">
+                                        <span class="checkmark"></span>
+                                        Гибкость
+                                    </label>
+                                    <label class="goal-checkbox">
+                                        <input type="checkbox" name="goals" value="rehabilitation">
+                                        <span class="checkmark"></span>
+                                        Реабилитация
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Дополнительные пожелания</label>
+                                <textarea class="form-textarea" id="appointmentNotes" placeholder="Расскажите о ваших целях, ограничениях по здоровью или особых пожеланиях..." rows="4"></textarea>
+                            </div>
+
+                            <div class="form-agreement">
+                                <label class="agreement-checkbox">
+                                    <input type="checkbox" id="appointmentAgreement" required>
+                                    <span class="checkmark"></span>
+                                    Я соглашаюсь с обработкой персональных данных и условиями оказания услуг
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary apple-btn" style="width: 100%; margin-top: 2rem;">
+                                <span class="btn-text">Отправить заявку</span>
+                                <div class="btn-loader"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Info -->
+                <div class="vp-appear">
+                    <div class="appointment-info">
+                        <h2 class="text-accent mb-3">Что вас ждет после записи?</h2>
+                        
+                        <div class="info-steps">
+                            <div class="info-step vp-appear">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 class="text-accent">Подтверждение записи</h4>
+                                    <p>Наш менеджер свяжется с вами в течение 15 минут для подтверждения записи</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-step vp-appear">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 class="text-accent">Бесплатная консультация</h4>
+                                    <p>Первая встреча с тренером и оценка физической подготовки - бесплатно</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-step vp-appear">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 class="text-accent">Индивидуальная программа</h4>
+                                    <p>Разработка персонального плана тренировок и питания</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-step vp-appear">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 class="text-accent">Начало тренировок</h4>
+                                    <p>Первая тренировка и знакомство с клубом</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="benefits-card">
+                            <h3 class="text-accent mb-2">Преимущества записи онлайн</h3>
+                            <ul class="benefits-list">
+                                <li>✅ Гарантированное место в выбранное время</li>
+                                <li>✅ Персональный подход с первого дня</li>
+                                <li>✅ Бесплатная пробная тренировка</li>
+                                <li>✅ Скидка 10% при онлайн-записи</li>
+                                <li>✅ Персональная программа питания</li>
+                            </ul>
+                        </div>
+
+                        <div class="contact-promo">
+                            <h4>Остались вопросы?</h4>
+                            <p>Звоните нам: <strong>+7 (999) 999-99-99</strong></p>
+                            <p>Telegram: <strong>@bodyavgorode</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h2 class="text-accent">Заявка отправлена!</h2>
+            <p>Мы свяжемся с вами в течение 15 минут для подтверждения записи</p>
+            <button class="btn-primary apple-btn" id="closeSuccess">Понятно</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Balance Modal -->
+    <div class="balance-modal" id="balanceModal">
+        <div class="balance-content">
+            <button class="close-balance" id="closeBalance">&times;</button>
+            
+            <div class="balance-header">
+                <h2 class="auth-title">Пополнение баланса</h2>
+                <p class="auth-subtitle">Введите сумму для пополнения</p>
+            </div>
+            
+            <form id="balanceForm">
+                <div class="form-group">
+                    <label class="form-label">Сумма (₽)</label>
+                    <input type="number" name="amount" class="form-input" placeholder="1000" required min="100" max="100000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Способ оплаты</label>
+                    <select class="form-input" name="paymentMethod" required>
+                        <option value="card">Банковская карта</option>
+                        <option value="yoomoney">ЮMoney</option>
+                        <option value="sbp">СБП (Система быстрых платежей)</option>
+                        <option value="qiwi">QIWI</option>
+                    </select>
+                </div>
+                
+                <div class="auth-actions">
+                    <button type="submit" class="btn-auth btn-balance-submit">Пополнить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Balance functionality
+        class BalanceManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // Обработка клика на баланс в хедере
+                const balanceBtn = document.getElementById('headerBalance');
+                if (balanceBtn) {
+                    balanceBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.openBalanceModal();
+                    });
+                    
+                    // Добавляем эффект при наведении
+                    balanceBtn.style.cursor = 'pointer';
+                    balanceBtn.title = 'Пополнить баланс';
+                }
+
+                // Закрытие модального окна баланса
+                const closeBalance = document.getElementById('closeBalance');
+                if (closeBalance) {
+                    closeBalance.addEventListener('click', () => {
+                        this.closeBalanceModal();
+                    });
+                }
+
+                // Клик по фону модального окна
+                const balanceModal = document.getElementById('balanceModal');
+                if (balanceModal) {
+                    balanceModal.addEventListener('click', (e) => {
+                        if (e.target === balanceModal) {
+                            this.closeBalanceModal();
+                        }
+                    });
+                }
+
+                // Обработка формы пополнения
+                const balanceForm = document.getElementById('balanceForm');
+                if (balanceForm) {
+                    balanceForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.processDeposit(e.target);
+                    });
+                }
+
+                // Закрытие по ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeBalanceModal();
+                    }
+                });
+            }
+
+            openBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Фокус на поле ввода
+                    const amountInput = modal.querySelector('input[name="amount"]');
+                    if (amountInput) {
+                        setTimeout(() => amountInput.focus(), 100);
+                    }
+                }
+            }
+
+            closeBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            processDeposit(form) {
+                const amount = parseInt(form.amount.value);
+                const paymentMethod = form.paymentMethod.value;
+                
+                if (!amount || amount < 100 || amount > 100000) {
+                    this.showNotification('Введите сумму от 100 до 100 000 ₽', true);
+                    return;
+                }
+                
+                if (!window.authManager || !window.authManager.currentUser) {
+                    this.showNotification('Пожалуйста, войдите в аккаунт для пополнения баланса', true);
+                    
+                    // Показываем окно авторизации
+                    this.closeBalanceModal();
+                    const authModal = document.getElementById('authModal');
+                    if (authModal) {
+                        authModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                    return;
+                }
+                
+                // Симуляция процесса оплаты
+                const submitBtn = form.querySelector('.btn-balance-submit');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Обработка...';
+                submitBtn.disabled = true;
+                
+                // Симулируем API вызов
+                setTimeout(() => {
+                    // Обновляем баланс пользователя
+                    window.authManager.currentUser.balance += amount;
+                    
+                    // Сохраняем транзакцию в историю
+                    const transaction = {
+                        id: 'TR-' + Date.now().toString().slice(-8),
+                        userId: window.authManager.currentUser.id,
+                        amount: amount,
+                        type: 'deposit',
+                        method: paymentMethod,
+                        date: new Date().toISOString(),
+                        status: 'completed'
+                    };
+                    
+                    // Сохраняем в localStorage
+                    this.saveTransaction(transaction);
+                    
+                    // Обновляем UI
+                    window.authManager.updateUI();
+                    
+                    // Показываем уведомление
+                    this.showNotification(`Баланс успешно пополнен на ${amount.toLocaleString()} ₽`);
+                    
+                    // Анимация обновления баланса
+                    const balanceAmount = document.querySelector('.balance-amount');
+                    if (balanceAmount) {
+                        balanceAmount.classList.remove('balance-updated');
+                        void balanceAmount.offsetWidth; // Триггер рефлоу
+                        balanceAmount.classList.add('balance-updated');
+                        
+                        setTimeout(() => {
+                            balanceAmount.classList.remove('balance-updated');
+                        }, 500);
+                    }
+                    
+                    // Закрываем модальное окно
+                    this.closeBalanceModal();
+                    
+                    // Восстанавливаем кнопку
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                    
+                    // Отправляем событие для обновления админки
+                    window.dispatchEvent(new CustomEvent('balanceUpdated', {
+                        detail: transaction
+                    }));
+                    
+                }, 1500);
+            }
+
+            saveTransaction(transaction) {
+                const transactions = JSON.parse(localStorage.getItem('fitness_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('fitness_transactions', JSON.stringify(transactions));
+            }
+
+            showNotification(message, isError = false) {
+                // Создаем простое уведомление
+                const notification = document.createElement('div');
+                notification.className = `notification ${isError ? 'error' : ''}`;
+                notification.textContent = message;
+                
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 1rem 1.5rem;
+                    background: ${isError ? '#f44336' : '#4CAF50'};
+                    color: white;
+                    border-radius: 10px;
+                    z-index: 99999;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                    font-weight: 500;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        }
+
+        // Appointment form handling with autofill for logged-in users
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализируем менеджер баланса
+            window.balanceManager = new BalanceManager();
+            
+            const appointmentForm = document.getElementById('appointmentForm');
+            const successModal = document.getElementById('successModal');
+            const closeSuccess = document.getElementById('closeSuccess');
+            const programSelect = document.getElementById('programSelect');
+            const trainerSelect = document.getElementById('trainerSelect');
+
+            // Get form fields
+            const nameField = document.getElementById('appointmentName');
+            const phoneField = document.getElementById('appointmentPhone');
+            const emailField = document.getElementById('appointmentEmail');
+            const timeField = document.getElementById('appointmentTime');
+            const levelField = document.getElementById('appointmentLevel');
+            const notesField = document.getElementById('appointmentNotes');
+            const agreementField = document.getElementById('appointmentAgreement');
+
+            // Set program from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const program = urlParams.get('program');
+            if (program) {
+                const option = programSelect.querySelector(`option[value="${program}"]`);
+                if (option) {
+                    programSelect.value = program;
+                }
+            }
+
+            // ОБНОВЛЕНО: Set trainer from URL parameter
+            const trainer = urlParams.get('trainer');
+            if (trainer && trainerSelect) {
+                trainerSelect.value = trainer;
+            }
+
+            // Check if user is logged in and autofill form
+            function autofillFormForLoggedInUser() {
+                if (window.authManager && window.authManager.currentUser) {
+                    const user = window.authManager.currentUser;
+                    
+                    // Fill in user data
+                    if (nameField) {
+                        nameField.value = `${user.firstName} ${user.lastName}`;
+                    }
+                    if (phoneField) {
+                        phoneField.value = user.phone || '';
+                    }
+                    if (emailField) {
+                        emailField.value = user.email || '';
+                    }
+                    
+                    // Check if user has training preferences in their profile
+                    if (user.nextTraining) {
+                        // Try to parse next training time and set preferred time
+                        const nextTraining = user.nextTraining.toLowerCase();
+                        if (nextTraining.includes('утро') || nextTraining.includes('утрен')) {
+                            timeField.value = 'morning';
+                        } else if (nextTraining.includes('день') || nextTraining.includes('днев')) {
+                            timeField.value = 'day';
+                        } else if (nextTraining.includes('вечер') || nextTraining.includes('вечерн')) {
+                            timeField.value = 'evening';
+                        }
+                    }
+                    
+                    // Check if user has active program and level
+                    if (user.activeProgram) {
+                        // Try to match active program with level
+                        const programText = user.activeProgram.toLowerCase();
+                        if (programText.includes('начинающий') || programText.includes('начальн')) {
+                            levelField.value = 'beginner';
+                        } else if (programText.includes('средний') || programText.includes('продолжающий')) {
+                            levelField.value = 'intermediate';
+                        } else if (programText.includes('продвинутый') || programText.includes('опытный')) {
+                            levelField.value = 'advanced';
+                        } else if (programText.includes('профессионал')) {
+                            levelField.value = 'professional';
+                        }
+                    }
+                    
+                    console.log('Form autofilled for user:', user.firstName);
+                } else {
+                    console.log('No user logged in, form will be empty');
+                }
+            }
+
+            // Call autofill function
+            autofillFormForLoggedInUser();
+
+            // Also set up listener for auth changes
+            if (window.authManager) {
+                // Listen for auth state changes
+                const originalLogin = window.authManager.login;
+                window.authManager.login = function(user) {
+                    const result = originalLogin.call(this, user);
+                    // Autofill form after login
+                    setTimeout(autofillFormForLoggedInUser, 100);
+                    return result;
+                };
+            }
+
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Validate form
+                    if (!agreementField.checked) {
+                        alert('Пожалуйста, согласитесь с обработкой персональных данных');
+                        return;
+                    }
+                    
+                    // Show loading state
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const btnText = submitBtn.querySelector('.btn-text');
+                    const loader = submitBtn.querySelector('.btn-loader');
+                    
+                    btnText.textContent = 'Отправка...';
+                    if (loader) loader.style.display = 'block';
+                    submitBtn.disabled = true;
+
+                    // Collect form data
+                    const formData = {
+                        program: programSelect.value,
+                        trainer: trainerSelect.value,
+                        name: nameField.value,
+                        phone: phoneField.value,
+                        email: emailField.value,
+                        time: timeField.value,
+                        level: levelField.value,
+                        goals: Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value),
+                        notes: notesField.value,
+                        agreement: agreementField.checked
+                    };
+                    
+                    console.log('Appointment form submitted:', formData);
+
+                    // Simulate API call
+                    setTimeout(() => {
+                        if (successModal) {
+                            successModal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        }
+                        
+                        // Reset button
+                        btnText.textContent = 'Отправить заявку';
+                        if (loader) loader.style.display = 'none';
+                        submitBtn.disabled = false;
+                        
+                        // Keep user data if logged in, otherwise reset form
+                        if (!window.authManager || !window.authManager.currentUser) {
+                            appointmentForm.reset();
+                        } else {
+                            // Only reset specific fields for logged-in users
+                            programSelect.value = '';
+                            trainerSelect.value = '';
+                            timeField.value = '';
+                            levelField.value = '';
+                            notesField.value = '';
+                            agreementField.checked = false;
+                            
+                            // Clear checkboxes
+                            document.querySelectorAll('input[name="goals"]:checked').forEach(cb => {
+                                cb.checked = false;
+                            });
+                            
+                            // Re-autofill user data
+                            autofillFormForLoggedInUser();
+                        }
+                        
+                        // Optionally save appointment to user history if logged in
+                        if (window.authManager && window.authManager.currentUser) {
+                            const appointmentRecord = {
+                                date: new Date().toISOString(),
+                                program: programSelect.options[programSelect.selectedIndex].text,
+                                trainer: trainerSelect.options[trainerSelect.selectedIndex].text,
+                                time: timeField.options[timeField.selectedIndex].text,
+                                level: levelField.options[levelField.selectedIndex].text,
+                                notes: notesField.value,
+                                status: 'pending'
+                            };
+                            
+                            console.log('Appointment saved to user history:', appointmentRecord);
+                            // You could save this to localStorage here
+                        }
+                    }, 2000);
+                });
+            }
+
+            if (closeSuccess && successModal) {
+                closeSuccess.addEventListener('click', function() {
+                    successModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                successModal.addEventListener('click', function(e) {
+                    if (e.target === successModal) {
+                        successModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            // Make sure all form elements are clickable
+            const formElements = document.querySelectorAll('.form-input, .form-textarea, .form-select, .goal-checkbox input, .agreement-checkbox input');
+            formElements.forEach(element => {
+                element.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+                
+                // Add focus styles
+                element.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                element.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
+            });
+            
+            // Add CSS for focused state
+            const style = document.createElement('style');
+            style.textContent = `
+                .form-group.focused .form-label {
+                    color: #FFDE00;
+                }
+                .form-group.focused .form-input,
+                .form-group.focused .form-textarea,
+                .form-group.focused .form-select {
+                    border-color: #FFDE00;
+                    box-shadow: 0 0 0 2px rgba(255, 222, 0, 0.2);
+                }
+                .goal-checkbox input:checked + .checkmark {
+                    background: #FFDE00;
+                    border-color: #FFDE00;
+                }
+                .goal-checkbox input:checked + .checkmark::after {
+                    opacity: 1;
+                }
+                .agreement-checkbox input:checked + .checkmark {
+                    background: #FFDE00;
+                    border-color: #FFDE00;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

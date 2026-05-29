@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные стили для админ-панели */
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .admin-stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFDE00;
+        }
+
+        .admin-stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFDE00;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-tab.active {
+            background: #FFDE00;
+            color: #000;
+        }
+
+        .admin-tab:hover {
+            background: rgba(255, 222, 0, 0.2);
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .users-table th {
+            background: rgba(255, 222, 0, 0.1);
+            font-weight: 600;
+            color: #FFDE00;
+        }
+
+        .users-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            min-width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edit-btn {
+            background: rgba(255, 222, 0, 0.2);
+            color: #FFDE00;
+        }
+
+        .edit-btn:hover {
+            background: #FFDE00;
+            color: #000;
+        }
+
+        .delete-btn {
+            background: rgba(255, 100, 100, 0.2);
+            color: #ff6b6b;
+        }
+
+        .delete-btn:hover {
+            background: #ff6b6b;
+            color: #fff;
+        }
+
+        .admin-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .membership-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .membership-active {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .membership-inactive {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .membership-admin {
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFC107;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-action-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .quick-action-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFDE00;
+            box-shadow: 0 10px 20px rgba(255, 222, 0, 0.2);
+        }
+
+        .quick-action-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .admin-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalAppear 0.3s ease;
+        }
+
+        .admin-modal-wide {
+            max-width: 800px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Стили для формы посещений */
+        .visit-notes {
+            min-height: 80px;
+        }
+
+        /* Стили для длинной плитки заявок */
+        .quick-action-card.full-width {
+            grid-column: 1 / -1; /* Занимает всю ширину */
+            display: flex;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 222, 0, 0.1), rgba(255, 222, 0, 0.05));
+            border: 1px solid rgba(255, 222, 0, 0.3);
+        }
+
+        .quick-action-card.full-width .quick-action-icon {
+            font-size: 3rem;
+            margin-right: 1.5rem;
+            margin-bottom: 0;
+            background: rgba(255, 222, 0, 0.2);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-action-content {
+            flex: 1;
+        }
+
+        .quick-action-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #FFDE00;
+        }
+
+        .quick-action-content p {
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .requests-mini-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 222, 0, 0.2);
+        }
+
+        .stat-item {
+            font-size: 0.9rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-item.new strong {
+            color: #FFC107;
+        }
+
+        .stat-item.approved strong {
+            color: #4CAF50;
+        }
+
+        .stat-item.rejected strong {
+            color: #F44336;
+        }
+
+        /* Dropdown для профиля */
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-dropbtn {
+            background: rgba(255, 222, 0, 0.1);
+            color: #FFDE00;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid rgba(255, 222, 0, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 140px;
+        }
+
+        .profile-dropbtn:hover {
+            background: rgba(255, 222, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .profile-dropdown-content a {
+            color: var(--text-primary);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .profile-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .profile-dropdown-content a:hover {
+            background: rgba(255, 222, 0, 0.1);
+            color: #FFDE00;
+            padding-left: 20px;
+        }
+
+        .profile-dropdown:hover .profile-dropdown-content {
+            display: block;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .users-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .admin-tabs {
+                flex-direction: column;
+            }
+            
+            .user-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .action-btn {
+                min-width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            
+            .quick-action-card.full-width {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .quick-action-card.full-width .quick-action-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .requests-mini-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .admin-modal {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+<header class="site-header" id="header">
+    <div class="header-inner">
+        <!-- Кликабельный логотип и название -->
+        <a href="index.html" class="brand-link">
+            <div class="brand motion vp-appear">
+                <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+                <div>
+                    <div class="brand-title">ВЕРШИНА</div>
+                    <div class="brand-subtitle">АДМИН-ПАНЕЛЬ</div>
+                </div>
+            </div>
+        </a>
+        
+        <nav class="site-nav motion vp-appear">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="admin.html" class="nav-link nav-active">Админ-панель</a>
+            <a href="vk-admin.html" class="nav-link">Публикации ВК</a>
+        </nav>
+        
+        <div class="header-actions">
+            <div class="balance" id="headerBalance">
+                <span class="balance-icon">💰</span>
+                <span class="balance-amount" id="adminBalance">0 ₽</span>
+            </div>
+            <div class="profile-dropdown">
+                <button class="profile-dropbtn" id="adminProfileBtn">
+                    <span id="adminName">Администратор</span>
+                </button>
+                <div class="profile-dropdown-content">
+                    <a href="profile.html">👤 Профиль</a>
+                    <a href="admin.html">⚙️ Админ-панель</a>
+                    <a href="vk-admin.html">📱 Публикации Вконтакте</a>
+                    <a href="#" id="logoutBtn">🚪 Выйти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <div class="admin-header">
+                <h1 class="hero-title">АДМИНИСТРАТИВНАЯ ПАНЕЛЬ</h1>
+                <p class="hero-sub">Управление пользователями и настройками клуба</p>
+            </div>
+
+            <!-- Статистика -->
+            <div class="admin-stats">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-value" id="totalUsers">0</div>
+                    <div>Всего пользователей</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-value" id="activeUsers">0</div>
+                    <div>Активных абонементов</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-value" id="totalVisits">0</div>
+                    <div>Посещений сегодня</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-value" id="totalIncome">0 ₽</div>
+                    <div>Доход за месяц</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="admin-stat-value" id="totalRequests">0</div>
+                    <div>Новых заявок</div>
+                </div>
+            </div>
+
+            <!-- Быстрые действия -->
+            <div class="quick-actions">
+                <div class="quick-action-card" data-action="create-user" onclick="adminUI.showCreateUserModal()">
+                    <div class="quick-action-icon">👤</div>
+                    <h3>Добавить пользователя</h3>
+                    <p>Создать новый аккаунт</p>
+                </div>
+                <div class="quick-action-card" data-action="create-membership" onclick="adminUI.showCreateMembershipModal()">
+                    <div class="quick-action-icon">🎫</div>
+                    <h3>Оформить абонемент</h3>
+                    <p>Активировать/продлить</p>
+                </div>
+                <div class="quick-action-card" data-action="add-visit" onclick="adminUI.showAddVisitModal()">
+                    <div class="quick-action-icon">✅</div>
+                    <h3>Добавить посещение</h3>
+                    <p>Зарегистрировать визит</p>
+                </div>
+                <div class="quick-action-card" data-action="reports" onclick="adminUI.showReportsModal()">
+                    <div class="quick-action-icon">📊</div>
+                    <h3>Отчеты</h3>
+                    <p>Статистика и аналитика</p>
+                </div>
+                <!-- Длинная прямоугольная плитка Заявок -->
+                <div class="quick-action-card full-width" data-action="requests" onclick="adminUI.showRequestsModal()">
+                    <div class="quick-action-icon">📋</div>
+                    <div class="quick-action-content">
+                        <h3>Управление заявками</h3>
+                        <p>Просмотр, одобрение и отклонение заявок от клиентов</p>
+                        <div class="requests-mini-stats">
+                            <span class="stat-item new">Новые: <strong id="miniPendingRequests">0</strong></span>
+                            <span class="stat-item approved">Принятые: <strong id="miniApprovedRequests">0</strong></span>
+                            <span class="stat-item rejected">Отклоненные: <strong id="miniRejectedRequests">0</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Табы -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="users">Пользователи</button>
+                <button class="admin-tab" data-tab="memberships">Абонементы</button>
+                <button class="admin-tab" data-tab="finances">Финансы</button>
+                <button class="admin-tab" data-tab="settings">Настройки</button>
+            </div>
+
+            <!-- Секция пользователей -->
+            <div class="admin-section active" id="users-section">
+                <div class="table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ФИО</th>
+                                <th>Email</th>
+                                <th>Телефон</th>
+                                <th>Абонемент</th>
+                                <th>Баланс</th>
+                                <th>Посещений</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Данные загружаются через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Секция абонементов -->
+            <div class="admin-section" id="memberships-section">
+                <div id="membershipsContent">
+                    <!-- Контент загружается через JS -->
+                </div>
+            </div>
+
+            <!-- Секция финансов -->
+            <div class="admin-section" id="finances-section">
+                <div id="financesContent">
+                    <!-- Контент загружается через JS -->
+                </div>
+            </div>
+
+            <!-- Секция настроек -->
+            <div class="admin-section" id="settings-section">
+                <div class="admin-form">
+                    <h3 class="text-accent mb-3">Настройки системы</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Название клуба</label>
+                        <input type="text" class="form-input" id="clubName" value="Вершина">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Телефон для связи</label>
+                        <input type="tel" class="form-input" id="clubPhone" value="+7 (999) 999-99-99">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Стоимость абонемента (месяц)</label>
+                        <input type="number" class="form-input" id="monthlyPrice" value="5000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Лимит посещений в месяц</label>
+                        <input type="number" class="form-input" id="monthlyVisitsLimit" value="12">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn-primary" onclick="adminUI.saveSettings()">Сохранить настройки</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Административная панель. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модальные окна -->
+    <!-- Модальное окно создания пользователя -->
+    <div class="modal-overlay" id="createUserModal">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h2 class="text-accent">Добавить пользователя</h2>
+                <button class="close-modal" onclick="adminUI.closeModal('createUserModal')">&times;</button>
+            </div>
+            <form id="createUserForm" onsubmit="adminUI.createUser(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Имя *</label>
+                        <input type="text" class="form-input" name="firstName" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия *</label>
+                        <input type="text" class="form-input" name="lastName" placeholder="Иванов" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email *</label>
+                    <input type="email" class="form-input" name="email" placeholder="ivan@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Телефон *</label>
+                    <input type="tel" class="form-input" name="phone" placeholder="+7 (999) 999-99-99" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Пароль *</label>
+                    <input type="password" class="form-input" name="password" placeholder="Создайте пароль" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="adminUI.closeModal('createUserModal')">Отмена</button>
+                    <button type="submit" class="btn-primary">Создать пользователя</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования пользователя -->
+    <div class="modal-overlay" id="editUserModal">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h2 class="text-accent">Редактировать пользователя</h2>
+                <button class="close-modal" onclick="adminUI.closeModal('editUserModal')">&times;</button>
+            </div>
+            <form id="editUserForm" onsubmit="adminUI.updateUser(event)">
+                <input type="hidden" id="editUserId">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Имя *</label>
+                        <input type="text" class="form-input" id="editFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия *</label>
+                        <input type="text" class="form-input" id="editLastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email *</label>
+                    <input type="email" class="form-input" id="editEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Телефон *</label>
+                    <input type="tel" class="form-input" id="editPhone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Баланс (₽) *</label>
+                    <input type="number" class="form-input" id="editBalance" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Активная программа</label>
+                        <input type="text" class="form-input" id="editActiveProgram" placeholder="Название программы">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Тренер</label>
+                        <input type="text" class="form-input" id="editTrainer" placeholder="Имя тренера">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Следующая тренировка</label>
+                    <input type="text" class="form-input" id="editNextTraining" placeholder="Дата и время">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="adminUI.closeModal('editUserModal')">Отмена</button>
+                    <button type="submit" class="btn-primary">Сохранить изменения</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно управления абонементом -->
+    <div class="modal-overlay" id="membershipModal">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h2 class="text-accent">Управление абонементом</h2>
+                <button class="close-modal" onclick="adminUI.closeModal('membershipModal')">&times;</button>
+            </div>
+            <form id="membershipForm" onsubmit="adminUI.updateMembership(event)">
+                <input type="hidden" id="membershipUserId">
+                
+                <div class="form-group" id="userSelectGroup" style="display: none;">
+                    <label class="form-label">Выберите пользователя *</label>
+                    <select class="form-input" id="membershipUserSelect" required>
+                        <!-- Заполнится через JS -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Тип абонемента *</label>
+                    <select class="form-input" id="membershipType" required>
+                        <option value="none">Без абонемента</option>
+                        <option value="monthly">Месячный</option>
+                        <option value="quarterly">Квартальный</option>
+                        <option value="annual">Годовой</option>
+                        <option value="unlimited">Безлимитный</option>
+                        <option value="admin">Администратор</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Статус *</label>
+                    <select class="form-input" id="membershipStatus" required>
+                        <option value="active">Активный</option>
+                        <option value="inactive">Неактивный</option>
+                        <option value="frozen">Заморожен</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Срок действия (до)</label>
+                    <input type="date" class="form-input" id="membershipEndDate">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Посещений в месяц</label>
+                        <input type="number" class="form-input" id="membershipVisits" value="12" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Использовано посещений</label>
+                        <input type="number" class="form-input" id="membershipVisitsUsed" value="0" min="0">
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="adminUI.closeModal('membershipModal')">Отмена</button>
+                    <button type="submit" class="btn-primary">Сохранить абонемент</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно добавления посещения -->
+    <div class="modal-overlay" id="addVisitModal">
+        <div class="admin-modal">
+            <div class="modal-header">
+                <h2 class="text-accent">Добавить посещение</h2>
+                <button class="close-modal" onclick="adminUI.closeModal('addVisitModal')">&times;</button>
+            </div>
+            <form id="addVisitForm" onsubmit="adminUI.addUserVisit(event)">
+                <div class="form-group">
+                    <label class="form-label">Выберите пользователя *</label>
+                    <select class="form-input" id="visitUserId" required>
+                        <!-- Заполняется через JS -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Дата посещения *</label>
+                    <input type="datetime-local" class="form-input" id="visitDate" value="" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Тип тренировки *</label>
+                    <select class="form-input" id="visitType" required>
+                        <option value="Силовая">Силовая</option>
+                        <option value="Кардио">Кардио</option>
+                        <option value="Групповая">Групповая</option>
+                        <option value="Персональная">Персональная</option>
+                        <option value="Йога и стретчинг">Йога и стретчинг</option>
+                        <option value="Функциональный тренинг">Функциональный тренинг</option>
+                        <option value="Другое">Другое</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Заметки (необязательно)</label>
+                    <textarea class="form-input visit-notes" id="visitNotes" placeholder="Дополнительная информация о посещении..."></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="adminUI.closeModal('addVisitModal')">Отмена</button>
+                    <button type="submit" class="btn-primary">Зарегистрировать посещение</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно управления заявками -->
+    <div class="modal-overlay" id="requestsModal">
+        <div class="admin-modal admin-modal-wide">
+            <div class="modal-header">
+                <h2 class="text-accent" id="requestsModalTitle">📬 Новые заявки</h2>
+                <button class="close-modal" onclick="adminUI.closeModal('requestsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Фильтры заявок -->
+                <div class="requests-filters">
+                    <button class="admin-tab active" data-request-filter="pending">
+                        📬 Новые (<span id="pendingTabCount">0</span>)
+                    </button>
+                    <button class="admin-tab" data-request-filter="approved">
+                        ✅ Принятые (<span id="approvedTabCount">0</span>)
+                    </button>
+                    <button class="admin-tab" data-request-filter="rejected">
+                        ❌ Отклоненные (<span id="rejectedTabCount">0</span>)
+                    </button>
+                </div>
+                
+                <!-- Счетчики -->
+                <div class="requests-stats">
+                    <div class="stat-item new">
+                        <strong>Всего новых:</strong> <span id="totalRequestsCount">0</span>
+                    </div>
+                    <div class="stat-item approved">
+                        <strong>Всего принятых:</strong> <span id="approvedRequestsCount">0</span>
+                    </div>
+                    <div class="stat-item rejected">
+                        <strong>Всего отклоненных:</strong> <span id="rejectedRequestsCount">0</span>
+                    </div>
+                </div>
+                
+                <!-- Таблица заявок -->
+                <div class="table-container" style="max-height: 60vh; overflow-y: auto;">
+                    <table class="users-table" id="requestsTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">ID</th>
+                                <th style="width: 150px;">Дата</th>
+                                <th style="width: 200px;">Клиент</th>
+                                <th style="width: 150px;">Программа</th>
+                                <th style="width: 200px;">Сообщение</th>
+                                <th style="width: 120px;">Статус</th>
+                                <th style="width: 200px;">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsTableBody">
+                            <!-- Данные загружаются через JS -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Действия с заявками -->
+                <div class="requests-actions">
+                    <div>
+                        <button class="btn-secondary" onclick="adminUI.exportRequests()">
+                            📥 Экспорт заявок (CSV)
+                        </button>
+                        <button class="btn-secondary" onclick="adminUI.markAllAsRead()">
+                            📭 Пометить все как прочитанные
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn-secondary" onclick="adminUI.emptyRequestsTrash()" style="background: rgba(244, 67, 54, 0.2); color: #F44336;">
+                            🗑️ Очистить корзину (удаленные)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно отчетов (будет создано динамически) -->
+    
+    <script src="auth.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Дополнительный JavaScript для обработки кнопок
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка имени админа
+            const loadAdminName = () => {
+                const savedUser = localStorage.getItem('current_user');
+                if (savedUser) {
+                    try {
+                        const user = JSON.parse(savedUser);
+                        const nameElement = document.getElementById('adminName');
+                        if (nameElement) {
+                            nameElement.textContent = `${user.firstName} ${user.lastName}`;
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при загрузке имени:', error);
+                    }
+                }
+            };
+            
+            loadAdminName();
+            
+            // Обработка кнопки выхода
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (confirm('Вы уверены, что хотите выйти?')) {
+                        localStorage.removeItem('current_user');
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+            
+            // Обработка ESC для закрытия модальных окон
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                        modal.classList.remove('active');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

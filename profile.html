@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные стили для истории посещений */
+        .visit-history {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .visit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .visit-item:last-child {
+            border-bottom: none;
+        }
+
+        .visit-item:hover {
+            background: rgba(255, 222, 0, 0.05);
+        }
+
+        .visit-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            min-width: 150px;
+        }
+
+        .visit-type {
+            color: #FFDE00;
+            font-weight: 500;
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+
+        .visit-notes {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-style: italic;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .no-visits {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .visit-count {
+            display: inline-block;
+            background: rgba(255, 222, 0, 0.2);
+            color: #FFDE00;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .visit-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .visit-date, .visit-type, .visit-notes {
+                width: 100%;
+                margin: 2px 0;
+            }
+            
+            .visit-notes {
+                white-space: normal;
+                max-width: 100%;
+            }
+        }
+        
+        /* Анимация для обновления аватарки */
+        @keyframes avatarUpdate {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .avatar-updated {
+            animation: avatarUpdate 0.5s ease;
+        }
+        
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .avatar-initials {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .avatar-preview {
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="header">
+        <div class="header-inner">
+          <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="programs.html" class="nav-link">Программы</a>
+                <a href="trainers.html" class="nav-link">Тренеры</a>
+                <a href="shop.html" class="nav-link">Магазин</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+                <a href="order-history.html" class="nav-link">История заказов</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="balance" id="headerBalance">
+                    <span class="balance-icon">💰</span>
+                    <span class="balance-amount">0 ₽</span>
+                </div>
+                <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="headerCartCount">0</span>
+                </a>
+                <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">МОЙ ПРОФИЛЬ</h1>
+            <p class="hero-sub fade-in">Управляйте вашими данными и тренировками</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Profile Content -->
+    <section class="section">
+        <div class="container">
+            <div class="profile-header">
+                <!-- Система загрузки аватарок -->
+                <div class="avatar-upload-container" id="avatarContainer">
+                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                    <div class="avatar-preview" id="avatarPreview" onclick="document.getElementById('avatarUpload').click();">
+                        <div class="avatar-initials" id="avatarInitials">ИИ</div>
+                        <img id="avatarImage" style="display: none;" alt="Аватар">
+                    </div>
+                    <div class="avatar-upload-progress" id="avatarProgress">
+                        <div class="avatar-upload-progress-bar" id="avatarProgressBar"></div>
+                    </div>
+                </div>
+                <div class="avatar-controls" id="avatarControls" style="display: none;">
+                    <button class="avatar-btn avatar-btn-change" onclick="document.getElementById('avatarUpload').click();">Изменить</button>
+                    <button class="avatar-btn avatar-btn-remove" onclick="avatarManager.removeAvatar()">Удалить</button>
+                </div>
+                <!-- Конец системы загрузки аватарок -->
+                
+                <h2 id="profileName">Иван Иванов</h2>
+                <p>Участник клуба «Вершина»</p>
+            </div>
+
+            <div class="profile-info-grid">
+                <!-- Личная информация -->
+                <div class="info-card">
+                    <h3 class="text-accent mb-3">Личная информация</h3>
+                    <div class="info-item">
+                        <span class="info-label">Имя:</span>
+                        <span class="info-value" id="profileFirstName">Иван</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Фамилия:</span>
+                        <span class="info-value" id="profileLastName">Иванов</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value" id="profileEmail">ivan@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Телефон:</span>
+                        <span class="info-value" id="profilePhone">+7 (999) 999-99-99</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Дата регистрации:</span>
+                        <span class="info-value" id="profileJoinDate">01.01.2024</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Баланс:</span>
+                        <span class="info-value" id="profileBalance">0 ₽</span>
+                    </div>
+                </div>
+
+                <!-- Мои тренировки -->
+                <div class="info-card">
+                    <h3 class="text-accent mb-3">Мои тренировки</h3>
+                    <div class="info-item">
+                        <span class="info-label">Активная программа:</span>
+                        <span class="info-value" id="profileActiveProgram">Не выбрано</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Тренер:</span>
+                        <span class="info-value" id="profileTrainer">Не выбран</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Следующая тренировка:</span>
+                        <span class="info-value" id="profileNextTraining">Нет запланированных</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Посещений в этом месяце:</span>
+                        <span class="info-value" id="profileVisitsThisMonth">0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Всего посещений:</span>
+                        <span class="info-value" id="profileTotalVisits">0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Статус абонемента:</span>
+                        <span class="info-value" id="profileMembershipStatus" style="color: #F44336;">Неактивен</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Тип абонемента:</span>
+                        <span class="info-value" id="profileMembershipType">Нет</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Действует до:</span>
+                        <span class="info-value" id="profileMembershipEndDate">—</span>
+                    </div>
+                </div>
+
+                <!-- История посещений -->
+                <div class="info-card">
+                    <h3 class="text-accent mb-3">
+                        История посещений 
+                        <span class="visit-count" id="visitCount">0</span>
+                    </h3>
+                    <div class="visit-history" id="profileVisitHistory">
+                        <div class="no-visits">Нет посещений</div>
+                    </div>
+                </div>
+
+                <!-- Статистика -->
+                <div class="info-card">
+                    <h3 class="text-accent mb-3">Статистика</h3>
+                    <div class="info-item">
+                        <span class="info-label">Последнее посещение:</span>
+                        <span class="info-value" id="profileLastVisit">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">В среднем в месяц:</span>
+                        <span class="info-value" id="profileAvgMonthly">0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Посещений осталось:</span>
+                        <span class="info-value" id="profileRemainingVisits">0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Любимый тип тренировок:</span>
+                        <span class="info-value" id="profileFavoriteType">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn-logout" id="logoutBtn">Выйти из аккаунта</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Balance Modal -->
+    <div class="balance-modal" id="balanceModal">
+        <div class="balance-content">
+            <button class="close-balance" id="closeBalance">&times;</button>
+            
+            <div class="balance-header">
+                <h2 class="auth-title">Пополнение баланса</h2>
+                <p class="auth-subtitle">Введите сумму для пополнения</p>
+            </div>
+            
+            <form id="balanceForm">
+                <div class="form-group">
+                    <label class="form-label">Сумма (₽)</label>
+                    <input type="number" name="amount" class="form-input" placeholder="1000" required min="100" max="100000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Способ оплаты</label>
+                    <select class="form-input" name="paymentMethod" required>
+                        <option value="card">Банковская карта</option>
+                        <option value="yoomoney">ЮMoney</option>
+                        <option value="sbp">СБП (Система быстрых платежей)</option>
+                        <option value="qiwi">QIWI</option>
+                    </select>
+                </div>
+                
+                <div class="auth-actions">
+                    <button type="submit" class="btn-auth btn-balance-submit">Пополнить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Balance functionality
+        class BalanceManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // Обработка клика на баланс в хедере
+                const balanceBtn = document.getElementById('headerBalance');
+                if (balanceBtn) {
+                    balanceBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.openBalanceModal();
+                    });
+                    
+                    // Добавляем эффект при наведении
+                    balanceBtn.style.cursor = 'pointer';
+                    balanceBtn.title = 'Пополнить баланс';
+                }
+
+                // Закрытие модального окна баланса
+                const closeBalance = document.getElementById('closeBalance');
+                if (closeBalance) {
+                    closeBalance.addEventListener('click', () => {
+                        this.closeBalanceModal();
+                    });
+                }
+
+                // Клик по фону модального окна
+                const balanceModal = document.getElementById('balanceModal');
+                if (balanceModal) {
+                    balanceModal.addEventListener('click', (e) => {
+                        if (e.target === balanceModal) {
+                            this.closeBalanceModal();
+                        }
+                    });
+                }
+
+                // Обработка формы пополнения
+                const balanceForm = document.getElementById('balanceForm');
+                if (balanceForm) {
+                    balanceForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.processDeposit(e.target);
+                    });
+                }
+
+                // Закрытие по ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeBalanceModal();
+                    }
+                });
+            }
+
+            openBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Фокус на поле ввода
+                    const amountInput = modal.querySelector('input[name="amount"]');
+                    if (amountInput) {
+                        setTimeout(() => amountInput.focus(), 100);
+                    }
+                }
+            }
+
+            closeBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            processDeposit(form) {
+                const amount = parseInt(form.amount.value);
+                const paymentMethod = form.paymentMethod.value;
+                
+                if (!amount || amount < 100 || amount > 100000) {
+                    this.showNotification('Введите сумму от 100 до 100 000 ₽', true);
+                    return;
+                }
+                
+                if (!window.authManager || !window.authManager.currentUser) {
+                    this.showNotification('Пожалуйста, войдите в аккаунт для пополнения баланса', true);
+                    
+                    // Показываем окно авторизации
+                    this.closeBalanceModal();
+                    const authModal = document.getElementById('authModal');
+                    if (authModal) {
+                        authModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                    return;
+                }
+                
+                // Симуляция процесса оплаты
+                const submitBtn = form.querySelector('.btn-balance-submit');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Обработка...';
+                submitBtn.disabled = true;
+                
+                // Симулируем API вызов
+                setTimeout(() => {
+                    // Обновляем баланс пользователя
+                    window.authManager.currentUser.balance += amount;
+                    
+                    // Сохраняем транзакцию в историю
+                    const transaction = {
+                        id: 'TR-' + Date.now().toString().slice(-8),
+                        userId: window.authManager.currentUser.id,
+                        amount: amount,
+                        type: 'deposit',
+                        method: paymentMethod,
+                        date: new Date().toISOString(),
+                        status: 'completed'
+                    };
+                    
+                    // Сохраняем в localStorage
+                    this.saveTransaction(transaction);
+                    
+                    // Обновляем UI
+                    window.authManager.updateUI();
+                    
+                    // Показываем уведомление
+                    this.showNotification(`Баланс успешно пополнен на ${amount.toLocaleString()} ₽`);
+                    
+                    // Анимация обновления баланса
+                    const balanceAmount = document.querySelector('.balance-amount');
+                    if (balanceAmount) {
+                        balanceAmount.classList.remove('balance-updated');
+                        void balanceAmount.offsetWidth; // Триггер рефлоу
+                        balanceAmount.classList.add('balance-updated');
+                        
+                        setTimeout(() => {
+                            balanceAmount.classList.remove('balance-updated');
+                        }, 500);
+                    }
+                    
+                    // Закрываем модальное окно
+                    this.closeBalanceModal();
+                    
+                    // Восстанавливаем кнопку
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                    
+                    // Отправляем событие для обновления админки
+                    window.dispatchEvent(new CustomEvent('balanceUpdated', {
+                        detail: transaction
+                    }));
+                    
+                }, 1500);
+            }
+
+            saveTransaction(transaction) {
+                const transactions = JSON.parse(localStorage.getItem('fitness_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('fitness_transactions', JSON.stringify(transactions));
+            }
+
+            showNotification(message, isError = false) {
+                // Создаем простое уведомление
+                const notification = document.createElement('div');
+                notification.className = `notification ${isError ? 'error' : ''}`;
+                notification.textContent = message;
+                
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 1rem 1.5rem;
+                    background: ${isError ? '#f44336' : '#4CAF50'};
+                    color: white;
+                    border-radius: 10px;
+                    z-index: 99999;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                    font-weight: 500;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        }
+
+        // Улучшенный скрипт для загрузки аватарки
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализируем менеджер баланса
+            window.balanceManager = new BalanceManager();
+            
+            function loadAvatarWithRetry(userId, retries = 3, delay = 500) {
+                if (!window.avatarManager || !userId) return;
+                
+                const loadAvatar = (attempt) => {
+                    try {
+                        const avatarData = window.avatarManager.getAvatar(userId);
+                        if (avatarData) {
+                            displayAvatar(avatarData);
+                        } else {
+                            displayInitials();
+                        }
+                    } catch (error) {
+                        console.warn(`Попытка ${attempt} не удалась:`, error);
+                        if (attempt < retries) {
+                            setTimeout(() => loadAvatar(attempt + 1), delay * attempt);
+                        } else {
+                            displayInitials();
+                        }
+                    }
+                };
+                
+                loadAvatar(1);
+            }
+            
+            function displayAvatar(avatarData) {
+                const avatarImage = document.getElementById('avatarImage');
+                const avatarInitials = document.getElementById('avatarInitials');
+                
+                if (avatarImage && avatarInitials) {
+                    const timestamp = new Date().getTime();
+                    const imgSrc = avatarData + (avatarData.includes('?') ? '&' : '?') + 't=' + timestamp;
+                    
+                    const img = new Image();
+                    img.onload = () => {
+                        avatarImage.src = imgSrc;
+                        avatarImage.style.display = 'block';
+                        avatarImage.classList.add('avatar-updated');
+                        avatarInitials.style.display = 'none';
+                        
+                        setTimeout(() => {
+                            avatarImage.classList.remove('avatar-updated');
+                        }, 500);
+                    };
+                    
+                    img.onerror = () => {
+                        avatarImage.style.display = 'none';
+                        avatarInitials.style.display = 'block';
+                    };
+                    
+                    img.src = imgSrc;
+                }
+            }
+            
+            function displayInitials() {
+                const avatarImage = document.getElementById('avatarImage');
+                const avatarInitials = document.getElementById('avatarInitials');
+                
+                if (avatarImage && avatarInitials) {
+                    avatarImage.style.display = 'none';
+                    avatarInitials.style.display = 'block';
+                    
+                    if (window.authManager && window.authManager.currentUser) {
+                        avatarInitials.textContent = window.authManager.getUserInitials();
+                    }
+                }
+            }
+            
+            // Загружаем аватарку при загрузке страницы
+            if (window.authManager && window.authManager.currentUser) {
+                setTimeout(() => {
+                    loadAvatarWithRetry(window.authManager.currentUser.id);
+                }, 100);
+            }
+            
+            // Обновляем аватарку при изменении пользователя
+            if (window.authManager) {
+                const originalUpdateUI = window.authManager.updateUI;
+                window.authManager.updateUI = function() {
+                    originalUpdateUI.call(this);
+                    
+                    if (this.currentUser) {
+                        setTimeout(() => {
+                            loadAvatarWithRetry(this.currentUser.id);
+                        }, 150);
+                    }
+                };
+            }
+            
+            // Обработка кнопки выхода
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    if (window.authManager) {
+                        authManager.logout();
+                    } else {
+                        localStorage.removeItem('current_user');
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+            
+            // Слушаем изменения в localStorage для синхронизации данных
+            window.addEventListener('storage', function(event) {
+                if (event.key === 'fitness_users' && window.location.pathname.includes('profile.html')) {
+                    const savedUser = localStorage.getItem('current_user');
+                    if (savedUser && window.authManager) {
+                        window.authManager.currentUser = JSON.parse(savedUser);
+                        window.authManager.updateProfilePage();
+                        if (window.authManager.updateVisitHistory) {
+                            window.authManager.updateVisitHistory();
+                        }
+                        
+                        // Обновляем аватарку
+                        if (window.avatarManager && window.authManager.currentUser) {
+                            setTimeout(() => {
+                                loadAvatarWithRetry(window.authManager.currentUser.id);
+                            }, 100);
+                        }
+                    }
+                }
+                
+                // Обновляем аватарку при изменении
+                if (event.key && event.key.startsWith('fitness_avatar_')) {
+                    if (window.authManager && window.authManager.currentUser) {
+                        const userId = window.authManager.currentUser.id;
+                        const changedUserId = event.key.replace('fitness_avatar_', '');
+                        
+                        if (userId == changedUserId) {
+                            setTimeout(() => {
+                                loadAvatarWithRetry(userId);
+                            }, 100);
+                        }
+                    }
+                }
+            });
+            
+            // Автоматическое обновление при фокусе на странице
+            window.addEventListener('focus', () => {
+                if (window.authManager && window.authManager.currentUser) {
+                    setTimeout(() => {
+                        if (window.authManager.updateProfilePage) {
+                            window.authManager.updateProfilePage();
+                        }
+                        if (window.authManager.updateVisitHistory) {
+                            window.authManager.updateVisitHistory();
+                        }
+                        if (window.avatarManager) {
+                            loadAvatarWithRetry(window.authManager.currentUser.id);
+                        }
+                    }, 100);
+                }
+            });
+            
+            // Инициализация для обновления профиля с историей посещений
+            if (window.authManager && window.authManager.updateProfilePage) {
+                const originalUpdateProfilePage = authManager.updateProfilePage;
+                
+                authManager.updateProfilePage = function() {
+                    originalUpdateProfilePage.call(this);
+                    this.updateVisitHistory();
+                };
+                
+                authManager.updateVisitHistory = function() {
+                    if (!window.location.pathname.includes('profile.html')) return;
+                    if (!this.currentUser) return;
+                    
+                    const profileBalance = document.getElementById('profileBalance');
+                    if (profileBalance) {
+                        profileBalance.textContent = `${(this.currentUser.balance || 0).toLocaleString()} ₽`;
+                    }
+                    
+                    const profileMembershipType = document.getElementById('profileMembershipType');
+                    if (profileMembershipType) {
+                        const membershipType = this.currentUser.membership?.type || 'none';
+                        const typeText = {
+                            'none': 'Нет',
+                            'monthly': 'Месячный',
+                            'quarterly': 'Квартальный',
+                            'annual': 'Годовой',
+                            'unlimited': 'Безлимитный',
+                            'admin': 'Администратор'
+                        };
+                        profileMembershipType.textContent = typeText[membershipType] || membershipType;
+                    }
+                    
+                    const profileMembershipEndDate = document.getElementById('profileMembershipEndDate');
+                    if (profileMembershipEndDate && this.currentUser.membership?.endDate) {
+                        const date = new Date(this.currentUser.membership.endDate);
+                        profileMembershipEndDate.textContent = date.toLocaleDateString('ru-RU');
+                    }
+                    
+                    const profileTotalVisits = document.getElementById('profileTotalVisits');
+                    if (profileTotalVisits) {
+                        profileTotalVisits.textContent = this.currentUser.statistics?.totalVisits || 0;
+                    }
+                    
+                    const profileVisitHistory = document.getElementById('profileVisitHistory');
+                    const visitCount = document.getElementById('visitCount');
+                    
+                    if (profileVisitHistory && visitCount) {
+                        const visits = this.currentUser.visitHistory || [];
+                        visitCount.textContent = visits.length;
+                        
+                        if (visits.length > 0) {
+                            let html = '';
+                            visits.forEach((visit, index) => {
+                                const date = new Date(visit.date);
+                                const formattedDate = date.toLocaleDateString('ru-RU', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+                                
+                                let icon = '🏋️';
+                                if (visit.type && visit.type.includes('Кардио')) icon = '❤️';
+                                if (visit.type && visit.type.includes('Йога')) icon = '🧘';
+                                if (visit.type && visit.type.includes('Групповая')) icon = '👥';
+                                if (visit.type && visit.type.includes('Персональная')) icon = '⭐';
+                                
+                                html += `
+                                    <div class="visit-item">
+                                        <div class="visit-date">${formattedDate}</div>
+                                        <div class="visit-type">${icon} ${visit.type || 'Тренировка'}</div>
+                                        <div class="visit-notes" title="${visit.notes || ''}">${visit.notes || ''}</div>
+                                    </div>
+                                `;
+                            });
+                            profileVisitHistory.innerHTML = html;
+                        } else {
+                            profileVisitHistory.innerHTML = '<div class="no-visits">Нет посещений</div>';
+                        }
+                    }
+                    
+                    this.updateProfileStatistics();
+                };
+                
+                authManager.updateProfileStatistics = function() {
+                    if (!this.currentUser) return;
+                    
+                    const profileLastVisit = document.getElementById('profileLastVisit');
+                    if (profileLastVisit) {
+                        const lastVisit = this.currentUser.statistics?.lastVisit;
+                        if (lastVisit) {
+                            const date = new Date(lastVisit);
+                            profileLastVisit.textContent = date.toLocaleDateString('ru-RU');
+                        } else {
+                            profileLastVisit.textContent = '—';
+                        }
+                    }
+                    
+                    const profileAvgMonthly = document.getElementById('profileAvgMonthly');
+                    if (profileAvgMonthly) {
+                        const registrationDate = new Date(this.currentUser.registrationDate);
+                        const monthsDiff = (new Date() - registrationDate) / (1000 * 60 * 60 * 24 * 30.44);
+                        const totalVisits = this.currentUser.statistics?.totalVisits || 0;
+                        const avgMonthly = monthsDiff > 1 ? (totalVisits / monthsDiff).toFixed(1) : totalVisits;
+                        profileAvgMonthly.textContent = `${avgMonthly}`;
+                    }
+                    
+                    const profileRemainingVisits = document.getElementById('profileRemainingVisits');
+                    if (profileRemainingVisits) {
+                        const membership = this.currentUser.membership || {};
+                        const total = membership.visitsPerMonth || 0;
+                        const used = membership.visitsUsed || 0;
+                        const remaining = total - used;
+                        profileRemainingVisits.textContent = remaining > 0 ? remaining : 0;
+                    }
+                    
+                    const profileFavoriteType = document.getElementById('profileFavoriteType');
+                    if (profileFavoriteType && this.currentUser.visitHistory && this.currentUser.visitHistory.length > 0) {
+                        const typeCounts = {};
+                        this.currentUser.visitHistory.forEach(visit => {
+                            const type = visit.type || 'Другое';
+                            typeCounts[type] = (typeCounts[type] || 0) + 1;
+                        });
+                        
+                        let favoriteType = '—';
+                        let maxCount = 0;
+                        Object.entries(typeCounts).forEach(([type, count]) => {
+                            if (count > maxCount) {
+                                maxCount = count;
+                                favoriteType = type;
+                            }
+                        });
+                        
+                        profileFavoriteType.textContent = favoriteType;
+                    }
+                };
+                
+                if (authManager.currentUser && window.location.pathname.includes('profile.html')) {
+                    setTimeout(() => {
+                        authManager.updateVisitHistory();
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

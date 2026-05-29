@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программы тренировок — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+     <header class="site-header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="programs.html" class="nav-link nav-active">Программы</a>
+                <a href="trainers.html" class="nav-link">Тренеры</a>
+                <a href="shop.html" class="nav-link">Магазин</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+                <a href="order-history.html" class="nav-link">История заказов</a>
+            </nav>
+            
+            <div class="header-actions">
+    <div class="balance" id="headerBalance">
+        <span class="balance-icon">💰</span>
+        <span class="balance-amount">0 ₽</span>
+    </div>
+    <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="headerCartCount">0</span>
+    </a>
+    <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">ПРОГРАММЫ ТРЕНИРОВОК</h1>
+            <p class="hero-sub fade-in">Индивидуальный подход к каждому клиенту</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Programs Navigation -->
+    <section class="section-sm" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="program-categories">
+                <button class="category-btn active" data-category="all">Все программы</button>
+                <button class="category-btn" data-category="strength">Силовые</button>
+                <button class="category-btn" data-category="cardio">Кардио</button>
+                <button class="category-btn" data-category="functional">Функциональные</button>
+                <button class="category-btn" data-category="group">Групповые</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Наши программы</h2>
+            
+            <div class="grid grid-3 programs-grid">
+                <!-- Силовой тренинг -->
+                <div class="program-card vp-appear lift" data-category="strength">
+                    <div class="program-badge">ХИТ</div>
+                    <div class="program-icon">💪</div>
+                    <h3 class="text-accent">Силовой тренинг</h3>
+                    <div class="program-meta">
+                        <span class="program-duration">60 мин</span>
+                        <span class="program-level">Средний</span>
+                    </div>
+                    <p class="program-description">Развитие силы и мышечной массы под руководством опытных тренеров</p>
+                    <ul class="program-features">
+                        <li>Работа со свободными весами</li>
+                        <li>Базовые и изолирующие упражнения</li>
+                        <li>Индивидуальный подбор нагрузок</li>
+                        <li>Контроль техники выполнения</li>
+                    </ul>
+                    <div class="program-price">
+                        <span class="price">5 000 ₽</span>
+                        <span class="period">/месяц</span>
+                    </div>
+                    <div class="text-center">
+                        <a href="appointment.html?program=strength" class="btn-primary apple-btn">Записаться</a>
+                    </div>
+                </div>
+
+                <!-- Функциональный тренинг -->
+                <div class="program-card vp-appear lift" data-category="functional">
+                    <div class="program-badge">НОВИНКА</div>
+                    <div class="program-icon">🏃‍♂️</div>
+                    <h3 class="text-accent">Функциональный тренинг</h3>
+                    <div class="program-meta">
+                        <span class="program-duration">45 мин</span>
+                        <span class="program-level">Любой</span>
+                    </div>
+                    <p class="program-description">Улучшение повседневной активности и спортивных результатов</p>
+                    <ul class="program-features">
+                        <li>Упражнения с собственным весом</li>
+                        <li>Работа с функциональными тренажерами</li>
+                        <li>Круговые тренировки</li>
+                        <li>Развитие всех физических качеств</li>
+                    </ul>
+                    <div class="program-price">
+                        <span class="price">4 500 ₽</span>
+                        <span class="period">/месяц</span>
+                    </div>
+                    <div class="text-center">
+                        <a href="appointment.html?program=functional" class="btn-primary apple-btn">Записаться</a>
+                    </div>
+                </div>
+
+                <!-- Кардио тренировки -->
+                <div class="program-card vp-appear lift" data-category="cardio">
+                    <div class="program-icon">❤️</div>
+                    <h3 class="text-accent">Кардио тренировки</h3>
+                    <div class="program-meta">
+                        <span class="program-duration">30-60 мин</span>
+                        <span class="program-level">Начинающий</span>
+                    </div>
+                    <p class="program-description">Снижение веса и укрепление сердечно-сосудистой системы</p>
+                    <ul class="program-features">
+                        <li>Интервальные тренировки</li>
+                        <li>Беговые дорожки и эллипсы</li>
+                        <li>Велотренажеры и степперы</li>
+                        <li>Контроль пульса и нагрузок</li>
+                    </ul>
+                    <div class="program-price">
+                        <span class="price">3 500 ₽</span>
+                        <span class="period">/месяц</span>
+                    </div>
+                    <div class="text-center">
+                        <a href="appointment.html?program=cardio" class="btn-primary apple-btn">Записаться</a>
+                    </div>
+                </div>
+
+                <!-- Йога и стретчинг -->
+                <div class="program-card vp-appear lift" data-category="group">
+                    <div class="program-icon">🧘‍♀️</div>
+                    <h3 class="text-accent">Йога и стретчинг</h3>
+                    <div class="program-meta">
+                        <span class="program-duration">60 мин</span>
+                        <span class="program-level">Любой</span>
+                    </div>
+                    <p class="program-description">Развитие гибкости, снятие стресса и улучшение осанки</p>
+                    <ul class="program-features">
+                        <li>Хатха йога</li>
+                        <li>Растяжка всех групп мышц</li>
+                        <li>Дыхательные практики</li>
+                        <li>Медитативные техники</li>
+                    </ul>
+                    <div class="program-price">
+                        <span class="price">4 000 ₽</span>
+                        <span class="period">/месяц</span>
+                    </div>
+                    <div class="text-center">
+                        <a href="appointment.html?program=yoga" class="btn-primary apple-btn">Записаться</a>
+                    </div>
+                </div>
+
+                <!-- Персональные тренировки -->
+                <div class="program-card vp-appear lift" data-category="strength">
+                    <div class="program-badge">ПРЕМИУМ</div>
+                    <div class="program-icon">⭐</div>
+                    <h3 class="text-accent">Персональные тренировки</h3>
+                    <div class="program-meta">
+                        <span class="program-duration">60 мин</span>
+                        <span class="program-level">Индивидуальный</span>
+                    </div>
+                    <p class="program-description">Максимально быстрое и эффективное достижение целей</p>
+                    <ul class="program-features">
+                        <li>Индивидуальная программа</li>
+                        <li>Персональный тренер</li>
+                        <li>Контроль питания</li>
+                        <li>Корректировка плана</li>
+                    </ul>
+                    <div class="program-price">
+                        <span class="price">15 000 ₽</span>
+                        <span class="period">/месяц</span>
+                    </div>
+                    <div class="text-center">
+                        <a href="appointment.html?program=personal" class="btn-primary apple-btn">Записаться</a>
+                    </div>
+                </div>
+
+                <!-- Групповые занятия -->
+                <div class="program-card vp-appear lift" data-category="group">
+                    <div class="program-icon">👥</div>
+                    <h3 class="text-accent">Групповые занятия</h3>
+                    <div class="program-meta">
+                        <span class="program-duration">45-60 мин</span>
+                        <span class="program-level">Любой</span>
+                    </div>
+                    <p class="program-description">Тренировки в компании и мотивация группой</p>
+                    <ul class="program-features">
+                        <li>Разные уровни сложности</li>
+                        <li>Опытный инструктор</li>
+                        <li>Энергичная атмосфера</li>
+                        <li>Регулярное расписание</li>
+                    </ul>
+                    <div class="program-price">
+                        <span class="price">3 000 ₽</span>
+                        <span class="period">/месяц</span>
+                    </div>
+                    <div class="text-center">
+                        <a href="appointment.html?program=group" class="btn-primary apple-btn">Записаться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="text-center mb-3 vp-appear">Расписание групповых занятий</h2>
+            <div class="schedule-table vp-appear">
+                <div class="schedule-header">
+                    <div>Время</div>
+                    <div>Понедельник</div>
+                    <div>Вторник</div>
+                    <div>Среда</div>
+                    <div>Четверг</div>
+                    <div>Пятница</div>
+                    <div>Суббота</div>
+                </div>
+                <div class="schedule-row">
+                    <div>07:00-08:00</div>
+                    <div>Йога</div>
+                    <div>Кардио</div>
+                    <div>Стретчинг</div>
+                    <div>Функциональный</div>
+                    <div>Йога</div>
+                    <div>Кардио</div>
+                </div>
+                <div class="schedule-row">
+                    <div>18:00-19:00</div>
+                    <div>Силовой</div>
+                    <div>Групповой</div>
+                    <div>Силовой</div>
+                    <div>Групповой</div>
+                    <div>Силовой</div>
+                    <div>-</div>
+                </div>
+                <div class="schedule-row">
+                    <div>19:00-20:00</div>
+                    <div>Функциональный</div>
+                    <div>Йога</div>
+                    <div>Функциональный</div>
+                    <div>Йога</div>
+                    <div>Функциональный</div>
+                    <div>-</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center vp-appear">
+                <h2 class="mb-2">Не можете выбрать программу?</h2>
+                <p class="mb-3">Пройдите бесплатную консультацию с нашим специалистом</p>
+                <a href="appointment.html" class="btn-primary apple-btn lift">Получить консультацию</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Balance Modal -->
+    <div class="balance-modal" id="balanceModal">
+        <div class="balance-content">
+            <button class="close-balance" id="closeBalance">&times;</button>
+            
+            <div class="balance-header">
+                <h2 class="auth-title">Пополнение баланса</h2>
+                <p class="auth-subtitle">Введите сумму для пополнения</p>
+            </div>
+            
+            <form id="balanceForm">
+                <div class="form-group">
+                    <label class="form-label">Сумма (₽)</label>
+                    <input type="number" name="amount" class="form-input" placeholder="1000" required min="100" max="100000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Способ оплаты</label>
+                    <select class="form-input" name="paymentMethod" required>
+                        <option value="card">Банковская карта</option>
+                        <option value="yoomoney">ЮMoney</option>
+                        <option value="sbp">СБП (Система быстрых платежей)</option>
+                        <option value="qiwi">QIWI</option>
+                    </select>
+                </div>
+                
+                <div class="auth-actions">
+                    <button type="submit" class="btn-auth btn-balance-submit">Пополнить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Balance functionality
+        class BalanceManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // Обработка клика на баланс в хедере
+                const balanceBtn = document.getElementById('headerBalance');
+                if (balanceBtn) {
+                    balanceBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.openBalanceModal();
+                    });
+                    
+                    // Добавляем эффект при наведении
+                    balanceBtn.style.cursor = 'pointer';
+                    balanceBtn.title = 'Пополнить баланс';
+                }
+
+                // Закрытие модального окна баланса
+                const closeBalance = document.getElementById('closeBalance');
+                if (closeBalance) {
+                    closeBalance.addEventListener('click', () => {
+                        this.closeBalanceModal();
+                    });
+                }
+
+                // Клик по фону модального окна
+                const balanceModal = document.getElementById('balanceModal');
+                if (balanceModal) {
+                    balanceModal.addEventListener('click', (e) => {
+                        if (e.target === balanceModal) {
+                            this.closeBalanceModal();
+                        }
+                    });
+                }
+
+                // Обработка формы пополнения
+                const balanceForm = document.getElementById('balanceForm');
+                if (balanceForm) {
+                    balanceForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.processDeposit(e.target);
+                    });
+                }
+
+                // Закрытие по ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeBalanceModal();
+                    }
+                });
+            }
+
+            openBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Фокус на поле ввода
+                    const amountInput = modal.querySelector('input[name="amount"]');
+                    if (amountInput) {
+                        setTimeout(() => amountInput.focus(), 100);
+                    }
+                }
+            }
+
+            closeBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            processDeposit(form) {
+                const amount = parseInt(form.amount.value);
+                const paymentMethod = form.paymentMethod.value;
+                
+                if (!amount || amount < 100 || amount > 100000) {
+                    this.showNotification('Введите сумму от 100 до 100 000 ₽', true);
+                    return;
+                }
+                
+                if (!window.authManager || !window.authManager.currentUser) {
+                    this.showNotification('Пожалуйста, войдите в аккаунт для пополнения баланса', true);
+                    
+                    // Показываем окно авторизации
+                    this.closeBalanceModal();
+                    const authModal = document.getElementById('authModal');
+                    if (authModal) {
+                        authModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                    return;
+                }
+                
+                // Симуляция процесса оплаты
+                const submitBtn = form.querySelector('.btn-balance-submit');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Обработка...';
+                submitBtn.disabled = true;
+                
+                // Симулируем API вызов
+                setTimeout(() => {
+                    // Обновляем баланс пользователя
+                    window.authManager.currentUser.balance += amount;
+                    
+                    // Сохраняем транзакцию в историю
+                    const transaction = {
+                        id: 'TR-' + Date.now().toString().slice(-8),
+                        userId: window.authManager.currentUser.id,
+                        amount: amount,
+                        type: 'deposit',
+                        method: paymentMethod,
+                        date: new Date().toISOString(),
+                        status: 'completed'
+                    };
+                    
+                    // Сохраняем в localStorage
+                    this.saveTransaction(transaction);
+                    
+                    // Обновляем UI
+                    window.authManager.updateUI();
+                    
+                    // Показываем уведомление
+                    this.showNotification(`Баланс успешно пополнен на ${amount.toLocaleString()} ₽`);
+                    
+                    // Анимация обновления баланса
+                    const balanceAmount = document.querySelector('.balance-amount');
+                    if (balanceAmount) {
+                        balanceAmount.classList.remove('balance-updated');
+                        void balanceAmount.offsetWidth; // Триггер рефлоу
+                        balanceAmount.classList.add('balance-updated');
+                        
+                        setTimeout(() => {
+                            balanceAmount.classList.remove('balance-updated');
+                        }, 500);
+                    }
+                    
+                    // Закрываем модальное окно
+                    this.closeBalanceModal();
+                    
+                    // Восстанавливаем кнопку
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                    
+                    // Отправляем событие для обновления админки
+                    window.dispatchEvent(new CustomEvent('balanceUpdated', {
+                        detail: transaction
+                    }));
+                    
+                }, 1500);
+            }
+
+            saveTransaction(transaction) {
+                const transactions = JSON.parse(localStorage.getItem('fitness_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('fitness_transactions', JSON.stringify(transactions));
+            }
+
+            showNotification(message, isError = false) {
+                // Создаем простое уведомление
+                const notification = document.createElement('div');
+                notification.className = `notification ${isError ? 'error' : ''}`;
+                notification.textContent = message;
+                
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 1rem 1.5rem;
+                    background: ${isError ? '#f44336' : '#4CAF50'};
+                    color: white;
+                    border-radius: 10px;
+                    z-index: 99999;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                    font-weight: 500;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        }
+
+        // Filter programs
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализируем менеджер баланса
+            window.balanceManager = new BalanceManager();
+            
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const programCards = document.querySelectorAll('.program-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter programs
+                    programCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

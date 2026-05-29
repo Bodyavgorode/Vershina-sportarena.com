@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление публикациями ВК — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили такие же как в news.html + дополнительные для админки */
+        .vk-admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .vk-admin-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .vk-sync-section {
+            margin: 3rem 0;
+        }
+        
+        .vk-sync-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .sync-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .sync-option:hover {
+            border-color: #FFDE00;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 222, 0, 0.15);
+        }
+        
+        .sync-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sync-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #FFDE00;
+        }
+        
+        .sync-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .vk-post-form {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .post-editor-container {
+            margin: 1.5rem 0;
+        }
+        
+        .post-editor {
+            min-height: 200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            color: inherit;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+        
+        .post-editor:focus {
+            outline: none;
+            border-color: #FFDE00;
+            box-shadow: 0 0 0 2px rgba(255, 222, 0, 0.2);
+        }
+        
+        .attachment-controls {
+            margin: 1.5rem 0;
+        }
+        
+        .attachment-upload {
+            padding: 2rem;
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .attachment-upload:hover {
+            border-color: #FFDE00;
+            background: rgba(255, 222, 0, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+        
+        .attachments-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .attachment-preview {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .attachment-preview img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .remove-attachment {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(244, 67, 54, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .publish-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .publish-option {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .publish-option:hover {
+            border-color: #FFDE00;
+            background: rgba(255, 222, 0, 0.05);
+        }
+        
+        .publish-option.active {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        .sync-status-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            z-index: 10000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: none;
+        }
+        
+        .status-success {
+            color: #4CAF50;
+        }
+        
+        .status-error {
+            color: #F44336;
+        }
+        
+        .sync-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .sync-progress-bar {
+            height: 100%;
+            background: #FFDE00;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .api-settings {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .token-input {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .token-input input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: inherit;
+            font-family: inherit;
+        }
+        
+        .token-input input:focus {
+            outline: none;
+            border-color: #FFDE00;
+        }
+        
+        .token-status {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .token-valid {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .token-invalid {
+            background: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .vk-sync-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .publish-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .token-input {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="vk-admin.html" class="nav-link nav-active">Публикации ВК</a>
+                <a href="admin.html" class="nav-link">Админ-панель</a>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="profile-dropdown">
+                    <button class="profile-dropbtn" id="adminProfileBtn">
+                        <span id="adminName">Администратор</span>
+                    </button>
+                    <div class="profile-dropdown-content">
+                        <a href="profile.html">👤 Профиль</a>
+                        <a href="admin.html">⚙️ Админ-панель</a>
+                        <a href="vk-admin.html">📱 Публикации Вконтакте</a>
+                        <a href="#" id="logoutBtn">🚪 Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">УПРАВЛЕНИЕ ПУБЛИКАЦИЯМИ ВКОНТАКТЕ</h1>
+            <p class="hero-sub fade-in">Синхронизация новостей между сайтом и группой ВК</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="section">
+        <div class="container vk-admin-container">
+            <div class="vk-admin-panel">
+                <div class="form-header">
+                    <h2 class="text-accent">Создание новой публикации</h2>
+                    <div class="publish-actions">
+                        <button class="btn-secondary" onclick="vkAdmin.previewPost()">
+                            👁️ Предпросмотр
+                        </button>
+                        <button class="btn-primary" onclick="vkAdmin.publishPost()">
+                            📤 Опубликовать
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="post-editor-container">
+                    <textarea 
+                        class="post-editor" 
+                        id="postContent" 
+                        placeholder="Напишите текст для публикации..." 
+                        rows="8"
+                    >🎉 Новость из админки! 
+                      
+Специальное предложение для наших клиентов! 
+Только до конца месяца скидка 20% на все абонементы.
+
+#Вершина #ФитнесКлуб #Акция #Скидка #Спорт</textarea>
+                </div>
+                
+                <div class="attachment-controls">
+                    <div class="attachment-upload" onclick="document.getElementById('fileUpload').click()">
+                        <div class="upload-icon">📎</div>
+                        <p>Перетащите сюда файлы или нажмите для загрузки</p>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">
+                            Поддерживаются: JPG, PNG, GIF (максимум 10 МБ)
+                        </p>
+                        <input type="file" id="fileUpload" multiple style="display: none;" 
+                               accept="image/*" onchange="vkAdmin.handleFileUpload(event)">
+                    </div>
+                    
+                    <div class="attachments-preview" id="attachmentsPreview">
+                        <!-- Препросмотр загруженных файлов -->
+                    </div>
+                </div>
+                
+                <div class="publish-options">
+                    <div class="publish-option active" id="optionVK" onclick="vkAdmin.selectOption('vk')">
+                        <h4>📱 Только ВКонтакте</h4>
+                        <p>Публикация только в группу ВК</p>
+                    </div>
+                    <div class="publish-option" id="optionSite" onclick="vkAdmin.selectOption('site')">
+                        <h4>🌐 Только на сайт</h4>
+                        <p>Публикация только на сайте</p>
+                    </div>
+                    <div class="publish-option" id="optionBoth" onclick="vkAdmin.selectOption('both')">
+                        <h4>🔄 ВКонтакте + Сайт</h4>
+                        <p>Синхронная публикация</p>
+                    </div>
+                    <div class="publish-option" id="optionSchedule" onclick="vkAdmin.selectOption('schedule')">
+                        <h4>⏰ Отложенная публикация</h4>
+                        <p>Запланировать на нужное время</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="vk-sync-section">
+                <h2 class="text-center mb-3">Синхронизация контента</h2>
+                <p class="text-center mb-4">Выберите действие для синхронизации контента между сайтом и группой ВКонтакте</p>
+                
+                <div class="vk-sync-options">
+                    <div class="sync-option" onclick="vkAdmin.syncFromVK()">
+                        <div class="sync-icon">⬇️</div>
+                        <h3 class="sync-title">Импорт из ВКонтакте</h3>
+                        <p class="sync-desc">Загрузите последние посты из группы ВК на сайт</p>
+                        <button class="btn-primary">Импортировать</button>
+                    </div>
+                    
+                    <div class="sync-option" onclick="vkAdmin.syncToVK()">
+                        <div class="sync-icon">⬆️</div>
+                        <h3 class="sync-title">Экспорт на сайт</h3>
+                        <p class="sync-desc">Опубликуйте посты с сайта в группу ВК</p>
+                        <button class="btn-primary">Экспортировать</button>
+                    </div>
+                    
+                    <div class="sync-option" onclick="vkAdmin.syncBoth()">
+                        <div class="sync-icon">🔄</div>
+                        <h3 class="sync-title">Двусторонняя синхронизация</h3>
+                        <p class="sync-desc">Синхронизируйте контент в обе стороны</p>
+                        <button class="btn-primary">Синхронизировать</button>
+                    </div>
+                    
+                    <div class="sync-option" onclick="vkAdmin.syncAuto()">
+                        <div class="sync-icon">⚡</div>
+                        <h3 class="sync-title">Авто-синхронизация</h3>
+                        <p class="sync-desc">Настройте автоматическую синхронизацию</p>
+                        <button class="btn-primary">Настроить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="api-settings">
+                <h2 class="text-accent mb-3">Настройки API ВКонтакте</h2>
+                <p>Для работы с API ВКонтакте требуется access token. Получите его через <a href="https://vk.com/dev/access_token" target="_blank" style="color: #4A76A8;">официальную документацию</a>.</p>
+                
+                <div class="token-input">
+                    <input type="text" id="vkToken" placeholder="Введите access token ВКонтакте" 
+                           value="vk1.a.ваш_токен_здесь">
+                    <button class="btn-primary" onclick="vkAdmin.saveToken()">Сохранить токен</button>
+                    <button class="btn-secondary" onclick="vkAdmin.testToken()">Проверить токен</button>
+                </div>
+                
+                <div class="token-status" id="tokenStatus" style="display: none;">
+                    <!-- Статус токена будет здесь -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sync Status Bar -->
+    <div class="sync-status-bar" id="syncStatusBar">
+        <div id="statusMessage"></div>
+        <div class="sync-progress">
+            <div class="sync-progress-bar" id="syncProgress"></div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal-overlay" id="previewModal">
+        <div class="admin-modal admin-modal-wide">
+            <div class="modal-header">
+                <h2 class="text-accent">Предпросмотр публикации</h2>
+                <button class="close-modal" onclick="vkAdmin.closePreview()">&times;</button>
+            </div>
+            <div class="modal-body" id="previewContent">
+                <!-- Контент предпросмотра -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Административная панель. Все права защищены.</p>
+            <p class="vp-appear" style="font-size: 0.9rem; opacity: 0.7;">
+                Группа ВКонтакте: <a href="https://vk.com/vershinasportclub" target="_blank" style="color: #4A76A8;">vk.com/vershinasportclub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="vk-api.js"></script>
+    <script src="vk-admin.js"></script>
+    <script src="auto-init.js"></script>
+
+</body>
+</html>

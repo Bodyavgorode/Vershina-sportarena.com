@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+      <header class="site-header" id="header">
+        <div class="header-inner">
+          <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="programs.html" class="nav-link">Программы</a>
+                <a href="trainers.html" class="nav-link">Тренеры</a>
+                <a href="shop.html" class="nav-link">Магазин</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+                <a href="order-history.html" class="nav-link">История заказов</a>
+
+            </nav>
+            
+          <div class="header-actions">
+    <div class="balance" id="headerBalance">
+        <span class="balance-icon">💰</span>
+        <span class="balance-amount">0 ₽</span>
+    </div>
+    <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="headerCartCount">0</span>
+    </a>
+    <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">КОРЗИНА</h1>
+            <p class="hero-sub fade-in">Ваши выбранные товары</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-2">
+                <!-- Cart Items -->
+                <div class="vp-appear">
+                    <h2 class="mb-3">Товары в корзине</h2>
+                    <div id="cartItems" class="cart-items">
+                        <!-- Товары будут добавляться динамически -->
+                        <div class="empty-cart-message">
+                            <p>Ваша корзина пуста</p>
+                            <a href="shop.html" class="btn-primary">Перейти в магазин</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="vp-appear">
+                    <div class="order-summary-card">
+                        <h3 class="text-accent mb-3">Сводка заказа</h3>
+                        
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span>Товары:</span>
+                                <span id="subtotal">0 ₽</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Доставка:</span>
+                                <span id="shipping">0 ₽</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Итого:</span>
+                                <span id="total">0 ₽</span>
+                            </div>
+                        </div>
+
+                        <div class="delivery-options">
+                            <h4 class="mb-2">Способ получения</h4>
+                            <div class="delivery-option">
+                                <input type="radio" id="delivery" name="delivery" value="delivery" checked>
+                                <label for="delivery">Доставка (300 ₽)</label>
+                            </div>
+                            <div class="delivery-option">
+                                <input type="radio" id="pickup" name="delivery" value="pickup">
+                                <label for="pickup">Самовывоз из клуба (бесплатно)</label>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <button class="btn-primary checkout-btn" id="checkoutBtn" disabled>
+                                Перейти к оформлению
+                            </button>
+                            
+                            <button class="btn-history" id="orderHistoryBtn">
+                                📋 История заказов
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <button class="close-checkout" id="closeCheckout">&times;</button>
+            
+            <div class="checkout-header">
+                <h2 class="text-accent">Оформление заказа</h2>
+                <p>Заполните данные для доставки</p>
+            </div>
+            
+            <form id="checkoutForm" class="checkout-form">
+                <div class="form-group">
+                    <label class="form-label">ФИО</label>
+                    <input type="text" class="form-input" id="checkoutName" placeholder="Иван Иванов" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Телефон</label>
+                    <input type="tel" class="form-input" id="checkoutPhone" placeholder="+7 (999) 999-99-99" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="checkoutEmail" placeholder="ivan@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Адрес доставки *</label>
+                    <textarea class="form-textarea" placeholder="Город, улица, дом, квартира..." rows="3" id="deliveryAddress" required></textarea>
+                    <small style="color: var(--text-muted); display: block; margin-top: 5px;">
+                        * Для самовывоза укажите "Самовывоз"
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Комментарий к заказу</label>
+                    <textarea class="form-textarea" placeholder="Особые пожелания..." rows="2" id="orderComment"></textarea>
+                </div>
+
+                <div class="order-review">
+                    <h4 class="mb-2">Ваш заказ</h4>
+                    <div id="orderReview"></div>
+                </div>
+
+                <div class="form-agreement">
+                    <label class="agreement-checkbox">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        Я соглашаюсь с обработкой персональных данных и условиями доставки
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-primary apple-btn" style="width: 100%; margin-top: 2rem;">
+                    <span class="btn-text">Подтвердить заказ</span>
+                    <div class="btn-loader"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h2 class="text-accent">Заказ оформлен!</h2>
+            <p id="successMessage">Вы успешно оформили заказ. Ожидайте доставки в течение 2-3 дней.</p>
+            <p class="order-number">Номер вашего заказа: <strong id="orderNumber">VS-0001</strong></p>
+            <div class="success-actions">
+                <button class="btn-primary" id="continueShopping">Продолжить покупки</button>
+                <a href="order-history.html" class="btn-secondary">Перейти к истории заказов</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order History Modal -->
+    <div class="modal-overlay" id="orderHistoryModal">
+        <div class="admin-modal admin-modal-wide">
+            <div class="modal-header">
+                <h2 class="text-accent">История заказов</h2>
+                <button class="close-modal" id="closeHistoryModal">&times;</button>
+            </div>
+            <div id="ordersHistoryContent">
+                <!-- История заказов будет загружена здесь -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Balance Modal -->
+    <div class="balance-modal" id="balanceModal">
+        <div class="balance-content">
+            <button class="close-balance" id="closeBalance">&times;</button>
+            
+            <div class="balance-header">
+                <h2 class="auth-title">Пополнение баланса</h2>
+                <p class="auth-subtitle">Введите сумму для пополнения</p>
+            </div>
+            
+            <form id="balanceForm">
+                <div class="form-group">
+                    <label class="form-label">Сумма (₽)</label>
+                    <input type="number" name="amount" class="form-input" placeholder="1000" required min="100" max="100000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Способ оплаты</label>
+                    <select class="form-input" name="paymentMethod" required>
+                        <option value="card">Банковская карта</option>
+                        <option value="yoomoney">ЮMoney</option>
+                        <option value="sbp">СБП (Система быстрых платежей)</option>
+                        <option value="qiwi">QIWI</option>
+                    </select>
+                </div>
+                
+                <div class="auth-actions">
+                    <button type="submit" class="btn-auth btn-balance-submit">Пополнить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="shop.js"></script>
+    <script>
+        // Balance functionality
+        class BalanceManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // Обработка клика на баланс в хедере
+                const balanceBtn = document.getElementById('headerBalance');
+                if (balanceBtn) {
+                    balanceBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.openBalanceModal();
+                    });
+                    
+                    // Добавляем эффект при наведении
+                    balanceBtn.style.cursor = 'pointer';
+                    balanceBtn.title = 'Пополнить баланс';
+                }
+
+                // Закрытие модального окна баланса
+                const closeBalance = document.getElementById('closeBalance');
+                if (closeBalance) {
+                    closeBalance.addEventListener('click', () => {
+                        this.closeBalanceModal();
+                    });
+                }
+
+                // Клик по фону модального окна
+                const balanceModal = document.getElementById('balanceModal');
+                if (balanceModal) {
+                    balanceModal.addEventListener('click', (e) => {
+                        if (e.target === balanceModal) {
+                            this.closeBalanceModal();
+                        }
+                    });
+                }
+
+                // Обработка формы пополнения
+                const balanceForm = document.getElementById('balanceForm');
+                if (balanceForm) {
+                    balanceForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.processDeposit(e.target);
+                    });
+                }
+
+                // Закрытие по ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeBalanceModal();
+                    }
+                });
+            }
+
+            openBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Фокус на поле ввода
+                    const amountInput = modal.querySelector('input[name="amount"]');
+                    if (amountInput) {
+                        setTimeout(() => amountInput.focus(), 100);
+                    }
+                }
+            }
+
+            closeBalanceModal() {
+                const modal = document.getElementById('balanceModal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            processDeposit(form) {
+                const amount = parseInt(form.amount.value);
+                const paymentMethod = form.paymentMethod.value;
+                
+                if (!amount || amount < 100 || amount > 100000) {
+                    this.showNotification('Введите сумму от 100 до 100 000 ₽', true);
+                    return;
+                }
+                
+                if (!window.authManager || !window.authManager.currentUser) {
+                    this.showNotification('Пожалуйста, войдите в аккаунт для пополнения баланса', true);
+                    
+                    // Показываем окно авторизации
+                    this.closeBalanceModal();
+                    const authModal = document.getElementById('authModal');
+                    if (authModal) {
+                        authModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                    return;
+                }
+                
+                // Симуляция процесса оплаты
+                const submitBtn = form.querySelector('.btn-balance-submit');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Обработка...';
+                submitBtn.disabled = true;
+                
+                // Симулируем API вызов
+                setTimeout(() => {
+                    // Обновляем баланс пользователя
+                    window.authManager.currentUser.balance += amount;
+                    
+                    // Сохраняем транзакцию в историю
+                    const transaction = {
+                        id: 'TR-' + Date.now().toString().slice(-8),
+                        userId: window.authManager.currentUser.id,
+                        amount: amount,
+                        type: 'deposit',
+                        method: paymentMethod,
+                        date: new Date().toISOString(),
+                        status: 'completed'
+                    };
+                    
+                    // Сохраняем в localStorage
+                    this.saveTransaction(transaction);
+                    
+                    // Обновляем UI
+                    window.authManager.updateUI();
+                    
+                    // Показываем уведомление
+                    this.showNotification(`Баланс успешно пополнен на ${amount.toLocaleString()} ₽`);
+                    
+                    // Анимация обновления баланса
+                    const balanceAmount = document.querySelector('.balance-amount');
+                    if (balanceAmount) {
+                        balanceAmount.classList.remove('balance-updated');
+                        void balanceAmount.offsetWidth; // Триггер рефлоу
+                        balanceAmount.classList.add('balance-updated');
+                        
+                        setTimeout(() => {
+                            balanceAmount.classList.remove('balance-updated');
+                        }, 500);
+                    }
+                    
+                    // Закрываем модальное окно
+                    this.closeBalanceModal();
+                    
+                    // Восстанавливаем кнопку
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    form.reset();
+                    
+                    // Отправляем событие для обновления админки
+                    window.dispatchEvent(new CustomEvent('balanceUpdated', {
+                        detail: transaction
+                    }));
+                    
+                }, 1500);
+            }
+
+            saveTransaction(transaction) {
+                const transactions = JSON.parse(localStorage.getItem('fitness_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('fitness_transactions', JSON.stringify(transactions));
+            }
+
+            showNotification(message, isError = false) {
+                // Используем существующий метод из shopManager или создаем новый
+                if (window.shopManager && window.shopManager.showNotification) {
+                    window.shopManager.showNotification(message, isError);
+                } else {
+                    // Создаем простое уведомление
+                    const notification = document.createElement('div');
+                    notification.className = `notification ${isError ? 'error' : ''}`;
+                    notification.textContent = message;
+                    
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        padding: 1rem 1.5rem;
+                        background: ${isError ? '#f44336' : '#4CAF50'};
+                        color: white;
+                        border-radius: 10px;
+                        z-index: 99999;
+                        transform: translateX(100%);
+                        transition: transform 0.3s ease;
+                        font-weight: 500;
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.transform = 'translateX(0)';
+                    }, 100);
+                    
+                    setTimeout(() => {
+                        notification.style.transform = 'translateX(100%)';
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                document.body.removeChild(notification);
+                            }
+                        }, 300);
+                    }, 3000);
+                }
+            }
+        }
+
+        // Инициализация корзины
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализируем менеджер баланса
+            window.balanceManager = new BalanceManager();
+            
+            // Обновляем сводку заказа при изменении способа доставки
+            const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
+            deliveryOptions.forEach(option => {
+                option.addEventListener('change', () => {
+                    if (window.shopManager) {
+                        window.shopManager.updateOrderSummary();
+                        window.shopManager.updateDeliveryAddressField();
+                    }
+                });
+            });
+
+            // Если shopManager уже загружен, обновляем корзину
+            if (window.shopManager) {
+                window.shopManager.loadCartItems();
+            } else {
+                // Если shopManager еще не загружен, ждем
+                const checkShopManager = setInterval(() => {
+                    if (window.shopManager) {
+                        clearInterval(checkShopManager);
+                        window.shopManager.loadCartItems();
+                    }
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

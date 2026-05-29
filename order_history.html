@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История заказов — Вершина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для истории заказов */
+        .order-history-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-history-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 222, 0, 0.3);
+        }
+
+        .order-history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .order-history-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .order-status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFC107;
+        }
+
+        .status-processing {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+        }
+
+        .status-shipped {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9C27B0;
+        }
+
+        .status-delivered {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .status-completed {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .status-cancelled {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+        }
+
+        .order-history-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .order-detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-detail-item span:first-child {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .order-total-amount {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-accent);
+        }
+
+        .order-history-items {
+            margin-bottom: 1.5rem;
+        }
+
+        .order-history-items h4 {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .order-item-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .order-item-row:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .order-item-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .order-item-emoji {
+            font-size: 1.25rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .order-item-quantity {
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .order-item-total {
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .order-history-comment {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            border-left: 3px solid var(--text-accent);
+        }
+
+        .order-history-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .order-reorder-btn .btn-secondary {
+            background: rgba(255, 222, 0, 0.1);
+            border-color: rgba(255, 222, 0, 0.3);
+            color: #FFDE00;
+            transition: all 0.3s ease;
+        }
+
+        .order-reorder-btn .btn-secondary:hover {
+            background: rgba(255, 222, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .no-orders {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            border: 2px dashed var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .no-orders h3 {
+            color: var(--text-accent);
+            margin-bottom: 1rem;
+        }
+
+        .no-orders p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-history {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-history:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .order-history-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .order-status-badge {
+                align-self: flex-start;
+                margin-top: 0.5rem;
+            }
+            
+            .order-item-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .order-item-info {
+                justify-content: center;
+            }
+            
+            .order-item-quantity,
+            .order-item-total {
+                text-align: center;
+            }
+            
+            .order-history-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .no-orders {
+                padding: 2rem 1rem;
+            }
+            
+            .order-reorder-btn .btn-secondary {
+                width: 100%;
+                padding: 0.75rem;
+            }
+        }
+
+        /* Анимация для появления заказов */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .order-history-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .order-history-card:nth-child(1) { animation-delay: 0.1s; }
+        .order-history-card:nth-child(2) { animation-delay: 0.2s; }
+        .order-history-card:nth-child(3) { animation-delay: 0.3s; }
+        .order-history-card:nth-child(4) { animation-delay: 0.4s; }
+        .order-history-card:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-ball ball-1"></div>
+        <div class="gradient-ball ball-2"></div>
+        <div class="gradient-ball ball-3"></div>
+        <div class="gradient-ball ball-4"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="header">
+        <div class="header-inner">
+          <a href="index.html" class="brand-link">
+    <div class="brand motion vp-appear">
+        <img src="public/logo.png" alt="Вершина" class="brand-logo-image">
+        <div>
+            <div class="brand-title">ВЕРШИНА</div>
+            <div class="brand-subtitle">СПОРТАРЕНА</div>
+        </div>
+    </div>
+</a>
+            
+            <nav class="site-nav motion vp-appear">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="programs.html" class="nav-link">Программы</a> 
+                <a href="trainers.html" class="nav-link">Тренеры</a>
+                <a href="shop.html" class="nav-link">Магазин</a>
+                <a href="news.html" class="nav-link">Новости</a>
+                <a href="about.html" class="nav-link">О клубе</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+                <a href="order-history.html" class="nav-link nav-active">История заказов</a>
+
+            </nav>
+            
+            <div class="header-actions">
+                <div class="balance" id="headerBalance">
+                    <span class="balance-icon">💰</span>
+                    <span class="balance-amount">0 ₽</span>
+                </div>
+                <a href="cart.html" class="cart-link motion vp-appear" id="cartLink">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count" id="headerCartCount">0</span>
+                </a>
+                <button class="btn-login motion vp-appear" id="loginBtn">Войти</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero small-hero">
+        <div class="hero-center">
+            <h1 class="hero-title fade-in">ИСТОРИЯ ЗАКАЗОВ</h1>
+            <p class="hero-sub fade-in">Все ваши покупки в одном месте</p>
+        </div>
+        <div class="floating-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Orders History -->
+    <section class="section">
+        <div class="container">
+            <div class="vp-appear">
+                <h2 class="mb-3 text-accent">Ваши заказы</h2>
+                <p class="mb-4 text-secondary">Здесь отображаются все ваши оформленные заказы. Вы можете просмотреть детали каждого заказа или повторить покупку.</p>
+                
+                <div id="ordersHistoryList" class="orders-history">
+                    <!-- Заказы будут загружены через JS -->
+                    <div class="loading-orders" style="text-align: center; padding: 3rem;">
+                        <div class="loading-spinner"></div>
+                        <p>Загрузка истории заказов...</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="shop.html" class="btn-primary">Продолжить покупки</a>
+                    <a href="cart.html" class="btn-history" style="margin-left: 1rem;">Вернуться в корзину</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="vp-appear">© 2024 Вершина — Премиальный фитнес-клуб. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <!-- Содержимое модального окна авторизации -->
+        <div class="auth-content">
+            <button class="close-auth" id="closeAuth">&times;</button>
+            
+            <!-- Форма входа -->
+            <div class="auth-form-container">
+                <div class="auth-header">
+                    <h2 class="auth-title">Вход в аккаунт</h2>
+                    <p class="auth-subtitle">Войдите в свой профиль Вершины</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-login-submit">Войти</button>
+                        <div class="auth-divider">Нет аккаунта?</div>
+                        <a href="#" class="btn-auth btn-register register-link">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div class="auth-form-container">
+                <form class="auth-form hidden" id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" name="firstName" class="form-input" placeholder="Иван" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" name="lastName" class="form-input" placeholder="Иванов" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Телефон</label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 999-99-99" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="Создайте пароль" required>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn-auth btn-register-submit">Зарегистрироваться</button>
+                        <div class="auth-divider">Уже есть аккаунт?</div>
+                        <a href="#" class="btn-auth btn-login login-link">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="shop.js"></script>
+    <script>
+        // Расширяем функционал shopManager для отображения истории заказов на отдельной странице
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверяем, находимся ли мы на странице истории заказов
+            if (!window.location.pathname.includes('order-history.html')) return;
+            
+            // Инициализируем shopManager если его нет
+            if (!window.shopManager) {
+                window.shopManager = new ShopManager();
+            }
+            
+            // Функция для загрузки истории заказов
+            const loadHistory = () => {
+                if (window.shopManager) {
+                    shopManager.displayOrderHistory('ordersHistoryList');
+                } else {
+                    setTimeout(loadHistory, 100);
+                }
+            };
+            
+            // Загружаем историю с небольшой задержкой
+            setTimeout(loadHistory, 300);
+            
+            // Слушаем изменения в localStorage для обновления истории
+            window.addEventListener('storage', function(event) {
+                if (event.key === 'fitness_orders') {
+                    // Обновляем историю заказов
+                    if (window.shopManager) {
+                        shopManager.orders = JSON.parse(localStorage.getItem('fitness_orders')) || [];
+                        shopManager.displayOrderHistory('ordersHistoryList');
+                    }
+                }
+            });
+            
+            // Обновляем историю при событиях входа/выхода
+            window.addEventListener('userLoggedIn', () => {
+                if (window.shopManager) {
+                    setTimeout(() => {
+                        shopManager.displayOrderHistory('ordersHistoryList');
+                    }, 300);
+                }
+            });
+            
+            window.addEventListener('userLoggedOut', () => {
+                if (window.shopManager) {
+                    setTimeout(() => {
+                        shopManager.displayOrderHistory('ordersHistoryList');
+                    }, 100);
+                }
+            });
+            
+            // Обновляем историю при оформлении нового заказа
+            window.addEventListener('shopOrderCompleted', () => {
+                if (window.shopManager) {
+                    setTimeout(() => {
+                        shopManager.displayOrderHistory('ordersHistoryList');
+                    }, 500);
+                }
+            });
+            
+            // Обновляем историю при обновлении статуса заказа
+            window.addEventListener('orderStatusUpdated', () => {
+                if (window.shopManager) {
+                    setTimeout(() => {
+                        shopManager.displayOrderHistory('ordersHistoryList');
+                    }, 300);
+                }
+            });
+            
+            // Обновляем историю при добавлении заказа из админки
+            window.addEventListener('adminOrderCreated', () => {
+                if (window.shopManager) {
+                    setTimeout(() => {
+                        shopManager.displayOrderHistory('ordersHistoryList');
+                    }, 300);
+                }
+            });
+            
+            // Обновляем историю при фокусе на страницу
+            window.addEventListener('focus', () => {
+                if (window.shopManager) {
+                    setTimeout(() => {
+                        shopManager.displayOrderHistory('ordersHistoryList');
+                    }, 200);
+                }
+            });
+            
+            // Добавляем кнопку для очистки истории (для тестирования)
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                const testBtn = document.createElement('button');
+                testBtn.className = 'btn-secondary';
+                testBtn.style.marginTop = '1rem';
+                testBtn.innerHTML = '🧪 Очистить историю заказов (тест)';
+                testBtn.onclick = () => {
+                    if (confirm('Очистить всю историю заказов? (Только для тестирования)')) {
+                        localStorage.removeItem('fitness_orders');
+                        if (window.shopManager) {
+                            shopManager.orders = [];
+                            shopManager.displayOrderHistory('ordersHistoryList');
+                        }
+                    }
+                };
+                
+                const container = document.querySelector('.text-center');
+                if (container) {
+                    container.appendChild(testBtn);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
